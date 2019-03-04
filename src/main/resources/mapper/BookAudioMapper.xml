@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.BookAudioMapper">
+
+
+    <insert id="insertOne">
+        insert into book_audio(path, bookId)
+            VALUE (#{bookAudio.path}, #{bookAudio.bookId});
+    </insert>
+
+    <delete id="deleteOne">
+        delete
+        from book_audio
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteByBook">
+        delete
+        from book_audio
+        where bookId = #{bookId}
+    </delete>
+
+    <select id="selectBookAudiosByBook" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.BookAudio">
+        select *
+        from book_audio
+        where bookId = #{bookId}
+    </select>
+
+    <select id="selectOne" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.BookAudio">
+        select *
+        from book_audio
+        where id = #{id}
+        limit 1
+    </select>
+
+</mapper>
