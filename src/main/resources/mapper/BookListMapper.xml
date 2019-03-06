@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.BookListMapper">
+
+
+    <insert id="insertOne">
+        insert into book_list(name) value (#{bookList.name})
+    </insert>
+    <insert id="insertBook">
+        insert into book_list_book(bookListId, bookId) VALUE (#{bookListId}, #{bookId})
+    </insert>
+    <update id="update">
+        update book_list
+        set name = #{bookList.name}
+        where id = #{bookList.id}
+    </update>
+    <delete id="deleteBookList">
+        delete
+        from book_list
+        where id = #{id};
+    </delete>
+    <delete id="deleteBookListBook">
+        delete
+        from book_list_book
+        where bookListId = #{bookListId}
+    </delete>
+    <delete id="deleteBook">
+        delete
+        from book_list_book
+        where bookListId = #{bookListId}
+          and bookId = #{bookId}
+    </delete>
+
+    <select id="selectAllBookLists" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.BookList">
+        select *
+        from book_list;
+    </select>
+
+    <select id="selectBooksByBookList" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Book">
+        select id, name, author, `desc`, picPath
+        from book_list_book blb
+                 left join book on blb.bookId = book.id
+        where blb.bookListId = #{bookListId}
+    </select>
+</mapper>

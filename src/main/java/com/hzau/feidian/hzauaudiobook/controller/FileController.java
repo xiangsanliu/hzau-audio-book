@@ -39,7 +39,7 @@ public class FileController {
                 byte[] bytes = file.getBytes();
                 Path realPath = Paths.get(dir.getAbsolutePath() + File.separator + file.getOriginalFilename());
                 if (new File(realPath.toString()).exists()) {
-                    return ResponseBean.ok("该文件已存在");
+                    return ResponseBean.error("该文件已存在");
                 }
                 String path = Files.write(realPath, bytes).toAbsolutePath().toString();
                 BookAudio bookAudio = new BookAudio(path, id);
@@ -52,7 +52,6 @@ public class FileController {
         }
         return ResponseBean.error("error");
     }
-
 
     @RequestMapping("/download/bookAudio/{id}")
     public void downloadBookAudio(HttpServletResponse response, @PathVariable("id") long id) throws UnsupportedEncodingException {

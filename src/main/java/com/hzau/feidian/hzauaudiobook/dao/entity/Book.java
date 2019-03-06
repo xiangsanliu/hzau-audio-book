@@ -11,6 +11,8 @@ public class Book {
 
     private Long id;
 
+    private Long bookListId;
+
     private String name;
 
     private String author;
