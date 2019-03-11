@@ -1,6 +1,6 @@
 package com.hzau.feidian.hzauaudiobook.service;
 
-import javafx.util.Pair;
+import com.hzau.feidian.hzauaudiobook.share.Pair;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

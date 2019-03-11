@@ -23,7 +23,7 @@ public class BookAudioService {
         bookAudioMapper.insertOne(bookAudio);
     }
 
-    public BookAudio getOne(long id) {
+    private BookAudio getOne(long id) {
         return bookAudioMapper.selectOne(id);
     }
 
