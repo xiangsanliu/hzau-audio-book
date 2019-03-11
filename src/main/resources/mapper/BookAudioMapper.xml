@@ -6,8 +6,8 @@
 
 
     <insert id="insertOne">
-        insert into book_audio(path, bookId)
-            VALUE (#{bookAudio.path}, #{bookAudio.bookId});
+        insert into book_audio(name, bookId)
+            VALUE (#{bookAudio.name}, #{bookAudio.bookId});
     </insert>
 
     <delete id="deleteOne">
@@ -23,15 +23,17 @@
     </delete>
 
     <select id="selectBookAudiosByBook" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.BookAudio">
-        select *
-        from book_audio
-        where bookId = #{bookId}
+        select ba.id id, ba.name name, book.name bookName
+        from book_audio ba
+                 left join book on book.id = ba.bookId
+        where ba.bookId = #{bookId}
     </select>
 
     <select id="selectOne" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.BookAudio">
-        select *
-        from book_audio
-        where id = #{id}
+        select ba.id id, ba.name name, book.name bookName
+        from book_audio ba
+                 left join book on book.id = ba.bookId
+        where ba.id = #{id}
         limit 1
     </select>
 

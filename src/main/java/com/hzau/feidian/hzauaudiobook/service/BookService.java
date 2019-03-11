@@ -5,6 +5,7 @@ import com.hzau.feidian.hzauaudiobook.dao.entity.Book;
 import com.hzau.feidian.hzauaudiobook.dao.entity.BookAudio;
 import com.hzau.feidian.hzauaudiobook.dao.mapper.BookAudioMapper;
 import com.hzau.feidian.hzauaudiobook.dao.mapper.BookMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,9 @@ import java.util.List;
 
 @Service
 public class BookService {
+
+    @Value("${upload-folder}")
+    private String baseFolder;
 
     @Resource
     private BookMapper bookMapper;
@@ -36,13 +40,13 @@ public class BookService {
 
     @Transactional
     public void removeOne(long id) {
-        bookMapper.deleteOne(id);
         List<BookAudio> bookAudios = bookAudioMapper.selectBookAudiosByBook(id);
-        bookAudios.forEach(item -> {
-            File file = new File(item.getPath());
+        for (BookAudio item : bookAudios) {
+            String path = baseFolder + "books" + File.separator + item.getBookName() + File.separator + item.getName();
+            File file = new File(path);
             file.delete();
-        });
-        bookAudioMapper.deleteByBook(id);
+        }
+        bookMapper.deleteOne(id);
     }
 
 }
