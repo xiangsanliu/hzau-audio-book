@@ -29,15 +29,14 @@ public class FileService {
             return new Pair<>(false, "空文件");
         }
         File dir = new File(uploadFolder + parentDir);
-        System.out.println(dir);
         if (dir.exists() || dir.mkdir()) {
             byte[] bytes = file.getBytes();
             Path realPath = Paths.get(dir.getAbsolutePath() + File.separator + file.getOriginalFilename());
             if (new File(realPath.toString()).exists()) {
                 return new Pair<>(false, "该文件已存在");
             }
-            String path = Files.write(realPath, bytes).toAbsolutePath().toString();
-            return new Pair<>(true, path);
+            Files.write(realPath, bytes);
+            return new Pair<>(true, null);
         }
         return new Pair<>(false, "上传文件失败");
     }

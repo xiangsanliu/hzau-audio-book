@@ -42,12 +42,17 @@ public class BookAudioController {
 
     @RequestMapping("/upload/{id}/{name}")
     public ResponseBean uploadBookAudio(MultipartFile file, @PathVariable("id") Long bookId,
-                                        @PathVariable("name") String bookName) throws IOException {
+                                        @PathVariable("name") String bookName) {
         String parentDir = "books" + File.separator + bookName;
-        Pair<Boolean, String> result = fileService.uploadFile(file, parentDir);
+        Pair<Boolean, String> result;
+        try {
+            result = fileService.uploadFile(file, parentDir);
+        } catch (IOException e) {
+            return ResponseBean.error("IO错误");
+        }
         if (result.getKey()) {
             bookAudioService.saveBookAudio(new BookAudio(file.getOriginalFilename(), bookId));
-            return ResponseBean.ok(result.getValue());
+            return ResponseBean.ok("books/" + bookName + '/' + file.getOriginalFilename());
         }
         return ResponseBean.error(result.getValue());
     }
