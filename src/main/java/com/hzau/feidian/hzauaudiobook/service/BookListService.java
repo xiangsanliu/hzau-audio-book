@@ -19,7 +19,7 @@ public class BookListService {
     public String editBookList(String data) {
         BookList bookList = JSON.parseObject(data, BookList.class);
         if (null == bookList.getId()) {
-            bookListMapper.insertOne(bookList);
+            bookListMapper.insert(bookList);
             return "添加成功";
         } else {
             bookListMapper.update(bookList);

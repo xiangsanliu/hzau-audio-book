@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface BookAudioMapper {
 
-    int insertOne(@Param("bookAudio") BookAudio bookAudio);
+    int insert(@Param("bookAudio") BookAudio bookAudio);
 
     List<BookAudio> selectBookAudiosByBook(@Param("bookId") long bookId);
 

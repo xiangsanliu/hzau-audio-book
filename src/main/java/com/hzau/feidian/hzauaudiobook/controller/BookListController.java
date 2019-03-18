@@ -21,8 +21,7 @@ public class BookListController {
 
     @RequestMapping("/editBookList")
     public ResponseBean editBookList(@RequestBody String data) {
-        String msg = bookListService.editBookList(data);
-        return ResponseBean.ok(msg);
+        return ResponseBean.ok(bookListService.editBookList(data));
     }
 
     @RequestMapping("/getAllBookLists")

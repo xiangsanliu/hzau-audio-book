@@ -5,7 +5,7 @@
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.BookListMapper">
 
 
-    <insert id="insertOne">
+    <insert id="insert">
         insert into book_list(name) value (#{bookList.name})
     </insert>
     <insert id="insertBook">

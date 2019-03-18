@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface BookListMapper {
 
-    int insertOne(@Param("bookList") BookList bookList);
+    int insert(@Param("bookList") BookList bookList);
 
     int insertBook(@Param("bookListId") long bookListId, @Param("bookId") long bookId);
 

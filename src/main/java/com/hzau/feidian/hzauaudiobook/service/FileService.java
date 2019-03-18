@@ -22,18 +22,27 @@ import java.util.Objects;
 public class FileService {
 
     @Value("${upload-folder}")
-    String uploadFolder;
+    private String uploadFolder;
 
     public Pair<Boolean, String> uploadFile(MultipartFile file, String parentDir) throws IOException {
+        return uploadFile(file, parentDir, file.getOriginalFilename(), false);
+    }
+
+    public Pair<Boolean, String> uploadFile(MultipartFile file, String parentDir, String fileName, boolean replace) throws IOException {
         if (Objects.isNull(file) || file.isEmpty()) {
             return new Pair<>(false, "空文件");
         }
         File dir = new File(uploadFolder + parentDir);
         if (dir.exists() || dir.mkdir()) {
             byte[] bytes = file.getBytes();
-            Path realPath = Paths.get(dir.getAbsolutePath() + File.separator + file.getOriginalFilename());
-            if (new File(realPath.toString()).exists()) {
-                return new Pair<>(false, "该文件已存在");
+            Path realPath = Paths.get(dir.getAbsolutePath() + File.separator + fileName);
+            File realFile = new File(realPath.toString());
+            if (realFile.exists()) {
+                if (replace) {
+                    realFile.delete();
+                } else {
+                    return new Pair<>(false, "该文件已存在");
+                }
             }
             Files.write(realPath, bytes);
             return new Pair<>(true, null);

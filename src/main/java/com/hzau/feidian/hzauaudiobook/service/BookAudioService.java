@@ -20,7 +20,7 @@ public class BookAudioService {
     private BookAudioMapper bookAudioMapper;
 
     public void saveBookAudio(BookAudio bookAudio) {
-        bookAudioMapper.insertOne(bookAudio);
+        bookAudioMapper.insert(bookAudio);
     }
 
     private BookAudio getOne(long id) {
