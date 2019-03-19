@@ -37,7 +37,7 @@ public class WeChatController {
         return ResponseBean.ok("success", weChatService.getBookById(id));
     }
 
-    @RequestMapping("/getAllShortAudios}")
+    @RequestMapping("/getAllShortAudios")
     public ResponseBean getAllShortAudios() {
         return ResponseBean.ok("success", weChatService.getAllApprovedShortAudios());
     }

@@ -22,7 +22,7 @@
     </select>
 
     <select id="selectAllApproved" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.ShortAudio">
-        select id, actid, actname, content, openid, filename
+        select id, actid, actname, content, openid, filename, uploadTime
         from short_audio
         where approved = true;
     </select>

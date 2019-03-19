@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Timestamp;
+
 /**
  * @author 项三六
  * @time 2019/3/19 14:36
@@ -33,5 +35,7 @@ public class ShortAudio {
     private Boolean checked;
 
     private String status;
+
+    private Timestamp uploadTime;
 
 }
