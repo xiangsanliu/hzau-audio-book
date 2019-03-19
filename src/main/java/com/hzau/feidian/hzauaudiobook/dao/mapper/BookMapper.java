@@ -11,6 +11,8 @@ public interface BookMapper {
 
     List<Book> selectAllBooks();
 
+    Book selectById(@Param("id") long id);
+
     int insertBook(@Param("book") Book book);
 
     int updateBook(@Param("book") Book book);

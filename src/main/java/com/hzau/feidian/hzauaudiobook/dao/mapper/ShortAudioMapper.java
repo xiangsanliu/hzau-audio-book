@@ -1,6 +1,10 @@
 package com.hzau.feidian.hzauaudiobook.dao.mapper;
 
+import com.hzau.feidian.hzauaudiobook.dao.entity.ShortAudio;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author 项三六
@@ -10,5 +14,14 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ShortAudioMapper {
+
+    int insert(@Param("audio") ShortAudio audio);
+
+    int updateApprove(@Param("id") long id, @Param("approved") boolean approved);
+
+    List<ShortAudio> selectAll();
+
+    List<ShortAudio> selectAllApproved();
+
 
 }

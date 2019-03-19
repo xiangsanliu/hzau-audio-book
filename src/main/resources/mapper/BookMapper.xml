@@ -26,5 +26,11 @@
         select *
         from book
     </select>
+    <select id="selectById" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Book">
+        select *
+        from book
+        where id = #{id}
+        limit 1
+    </select>
 
 </mapper>

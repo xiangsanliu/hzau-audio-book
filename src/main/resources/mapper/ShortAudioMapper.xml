@@ -4,5 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.ShortAudioMapper">
 
+    <insert id="insert">
+        insert into short_audio(content, actId, actName, openid, fileName)
+            value (#{audio.content}, #{audio.actId}, #{audio.actName}, #{audio.openid}, #{audio.fileName});
+    </insert>
 
+    <update id="updateApprove">
+        update short_audio
+        set approved = #{approved},
+            checked  = true
+        where id = #{id};
+    </update>
+
+    <select id="selectAll" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.ShortAudio">
+        select *
+        from short_audio;
+    </select>
+
+    <select id="selectAllApproved" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.ShortAudio">
+        select id, actid, actname, content, openid, filename
+        from short_audio
+        where approved = true;
+    </select>
 </mapper>

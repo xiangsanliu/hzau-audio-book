@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,5 +22,7 @@ public class Book {
     private String picPath;
 
     private String desc;
+
+    private List<BookAudio> audios;
 
 }
