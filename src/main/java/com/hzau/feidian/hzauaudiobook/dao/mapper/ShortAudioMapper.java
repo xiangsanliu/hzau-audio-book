@@ -23,5 +23,8 @@ public interface ShortAudioMapper {
 
     List<ShortAudio> selectAllApproved();
 
+    int incThumb(@Param("id") long id);
+
+    int incAmount(@Param("id") long id);
 
 }

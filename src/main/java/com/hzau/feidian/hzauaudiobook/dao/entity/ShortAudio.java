@@ -38,4 +38,14 @@ public class ShortAudio {
 
     private Timestamp uploadTime;
 
+    // 以下为用户信息，用于级联查询，就不新建VO类了
+
+    private String name;
+
+    private String majorAndClass;
+
+    private String qq;
+
+    private String phoneNum;
+
 }

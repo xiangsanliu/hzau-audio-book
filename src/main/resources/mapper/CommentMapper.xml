@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.CommentMapper">
+
+    <insert id="insertIntoBookAudio">
+        insert into comment_book_audio(bookAudioId, content, openid)
+            value (#{comment.bookAudioId}, #{comment.content}, #{comment.openid});
+    </insert>
+
+    <insert id="insertIntoShortAudio">
+        insert into comment_short_audio(shortAudioId, content, openid)
+            value (#{comment.bookAudioId}, #{comment.content}, #{comment.openid});
+    </insert>
+
+    <update id="incBookThumb">
+        update comment_book_audio
+        set thumb = thumb + '1'
+        where id = #{id};
+    </update>
+
+    <update id="incShortThumb">
+        update comment_short_audio
+        set thumb = thumb + '1'
+        where id = #{id};
+    </update>
+
+    <select id="selectByBook" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Comment">
+        select cba.id, cba.content, cba.thumb, cba.commentTime, u.gender, u.avatarUrl, u.name
+        from comment_book_audio cba
+                 left join user u on cba.openid = u.openid
+        where bookAudioId = #{id};
+    </select>
+
+    <select id="selectByShort" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Comment">
+        select sca.id, sca.content, sca.thumb, sca.commentTime, u.gender, u.avatarUrl, u.name
+        from comment_short_audio sca
+                 left join user u on sca.openid = u.openid
+        where shortAudioId = #{id};
+    </select>
+
+</mapper>

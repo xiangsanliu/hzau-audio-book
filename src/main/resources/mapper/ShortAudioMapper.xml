@@ -16,14 +16,51 @@
         where id = #{id};
     </update>
 
+    <update id="incThumb">
+        update short_audio
+        set thumb = thumb + '1'
+        where id = #{id};
+    </update>
+    <update id="incAmount">
+        update short_audio
+        set amount = amount + '1'
+        where id = #{id};
+    </update>
+
     <select id="selectAll" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.ShortAudio">
-        select *
-        from short_audio;
+        select sa.id,
+               sa.actid,
+               sa.actname,
+               sa.content,
+               sa.openid,
+               sa.filename,
+               sa.approved,
+               sa.checked,
+               sa.uploadTime,
+               sa.thumb,
+               sa.amount,
+               u.name,
+               u.majorAndClass,
+               u.qq,
+               u.phoneNum
+        from short_audio sa
+                 left join user u on sa.openid = u.openid;
     </select>
 
     <select id="selectAllApproved" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.ShortAudio">
-        select id, actid, actname, content, openid, filename, uploadTime
-        from short_audio
+        select sa.id,
+               sa.actid,
+               sa.actname,
+               sa.content,
+               sa.openid,
+               sa.filename,
+               sa.uploadTime,
+               u.name,
+               u.majorAndClass,
+               u.qq,
+               u.phoneNum
+        from short_audio sa
+                 left join user u on sa.openid = u.openid
         where approved = true;
     </select>
 </mapper>

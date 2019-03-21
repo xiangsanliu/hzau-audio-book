@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.BookMapper">
     <insert id="insertBook" useGeneratedKeys="true" keyProperty="id">
-        insert into book(name, author, picPath, `desc`)
-            value (#{book.name}, #{book.author}, #{book.picPath}, #{book.desc})
+        insert into book(name, author, picPath, `desc`, source)
+            value (#{book.name}, #{book.author}, #{book.picPath}, #{book.desc}, #{book.source})
     </insert>
 
     <update id="updateBook">
@@ -13,7 +13,8 @@
         set name    = #{book.name},
             author  = #{book.author},
             picPath = #{book.picPath},
-            `desc`= #{book.desc}
+            `desc`  = #{book.desc},
+            source  = #{book.source}
         where id = #{book.id}
     </update>
     <delete id="deleteOne">

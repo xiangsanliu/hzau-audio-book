@@ -19,4 +19,8 @@ public interface BookAudioMapper {
 
     int deleteByBook(@Param("bookId") long bookId);
 
+    int incThumb(@Param("id") long id);
+
+    int incAmount(@Param("id") long id);
+
 }

@@ -23,6 +23,8 @@ public class Book {
 
     private String desc;
 
+    private String source;
+
     private List<BookAudio> audios;
 
 }

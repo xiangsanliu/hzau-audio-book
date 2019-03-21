@@ -2,6 +2,7 @@ package com.hzau.feidian.hzauaudiobook.dao.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author 项三六
@@ -11,6 +12,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@ToString
 public class Activity {
 
     private Long id;

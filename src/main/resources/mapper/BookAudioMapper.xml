@@ -10,6 +10,18 @@
             VALUE (#{bookAudio.name}, #{bookAudio.bookId});
     </insert>
 
+    <update id="incThumb">
+        update book_audio
+        set thumb = thumb + '1'
+        where id = #{id};
+    </update>
+
+    <update id="incAmount">
+        update book_audio
+        set amount = amount + '1'
+        where id = #{id};
+    </update>
+
     <delete id="deleteOne">
         delete
         from book_audio
@@ -23,14 +35,14 @@
     </delete>
 
     <select id="selectBookAudiosByBook" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.BookAudio">
-        select ba.id id, ba.name name, book.name bookName
+        select ba.id id, ba.name name, book.name bookName, ba.thumb, ba.amount
         from book_audio ba
                  left join book on book.id = ba.bookId
         where ba.bookId = #{bookId}
     </select>
 
     <select id="selectOne" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.BookAudio">
-        select ba.id id, ba.name name, book.name bookName
+        select ba.id id, ba.name name, book.name bookName, ba.thumb, ba.amount
         from book_audio ba
                  left join book on book.id = ba.bookId
         where ba.id = #{id}

@@ -4,5 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.UserMapper">
 
+    <insert id="insert">
+        insert ignore into user(openid, avatarUrl, gender)
+            value (#{user.openid}, #{user.avatarUrl}, #{user.gender});
+    </insert>
+
+    <update id="update">
+        update user
+        set name          = #{user.name},
+            majorAndClass = #{user.majorAndClass},
+            qq            = #{user.qq},
+            phoneNum      = #{user.phoneNum}
+        where openid = #{user.openid}
+
+    </update>
+
+    <select id="selectByOpenId" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.User">
+        select *
+        from user
+        where openid = #{openid}
+        limit 1;
+    </select>
 
 </mapper>
