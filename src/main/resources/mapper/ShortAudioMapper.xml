@@ -39,6 +39,7 @@
                sa.uploadTime,
                sa.thumb,
                sa.amount,
+               sa.reason,
                u.name,
                u.majorAndClass,
                u.qq,

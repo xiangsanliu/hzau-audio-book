@@ -34,6 +34,9 @@ public class ShortAudio {
 
     private Boolean checked;
 
+    // 审核不通过则给出原因
+    private String reason;
+
     private String status;
 
     private Timestamp uploadTime;

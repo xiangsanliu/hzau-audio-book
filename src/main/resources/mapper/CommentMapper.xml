@@ -34,9 +34,9 @@
     </select>
 
     <select id="selectByShort" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Comment">
-        select sca.id, sca.content, sca.thumb, sca.commentTime, u.gender, u.avatarUrl, u.name
-        from comment_short_audio sca
-                 left join user u on sca.openid = u.openid
+        select csa.id, csa.content, csa.thumb, csa.commentTime, u.gender, u.avatarUrl, u.name
+        from comment_short_audio csa
+                 left join user u on csa.openid = u.openid
         where shortAudioId = #{id};
     </select>
 

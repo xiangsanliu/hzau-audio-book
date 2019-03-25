@@ -116,4 +116,12 @@ public class WeChatService {
         shortAudioMapper.incAmount(id);
     }
 
+    public List<Comment> listShortAudioComments(long id) {
+        return commentMapper.selectByShort(id);
+    }
+
+    public List<Comment> listBookAudioComments(long id) {
+        return commentMapper.selectByBook(id);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.hzau.feidian.hzauaudiobook.controller;
+package com.hzau.feidian.hzauaudiobook.controller.wechat;
 
 import com.hzau.feidian.hzauaudiobook.dao.entity.ShortAudio;
 import com.hzau.feidian.hzauaudiobook.service.FileService;
@@ -123,5 +123,14 @@ public class WeChatController {
         return ResponseBean.ok();
     }
 
+    @RequestMapping("/getCommentsByBook/{id}")
+    public ResponseBean getCommentsByBook(@PathVariable long id) {
+        return ResponseBean.ok(null, weChatService.listBookAudioComments(id));
+    }
+
+    @RequestMapping("/getCommentsByShort/{id}")
+    public ResponseBean getCommentsByShort(@PathVariable long id) {
+        return ResponseBean.ok(null, weChatService.listShortAudioComments(id));
+    }
 
 }

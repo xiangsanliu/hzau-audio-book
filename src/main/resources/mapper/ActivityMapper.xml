@@ -12,8 +12,9 @@
 
     <update id="update">
         update activity
-        set name   = #{activity.name},
-            `desc` = #{activity.desc}
+        set name       = #{activity.name},
+            `desc`     = #{activity.desc},
+            uploadTime = current_timestamp
         where id = #{activity.id}
     </update>
     <delete id="delete">
