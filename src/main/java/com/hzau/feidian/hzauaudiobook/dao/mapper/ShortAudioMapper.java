@@ -17,7 +17,7 @@ public interface ShortAudioMapper {
 
     int insert(@Param("audio") ShortAudio audio);
 
-    int updateApprove(@Param("id") long id, @Param("approved") boolean approved);
+    int updateApprove(@Param("id") long id, @Param("approved") boolean approved, @Param("reason") String reason);
 
     List<ShortAudio> selectAll();
 

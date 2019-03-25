@@ -12,7 +12,8 @@
     <update id="updateApprove">
         update short_audio
         set approved = #{approved},
-            checked  = true
+            checked  = true,
+            reason   = #{reason}
         where id = #{id};
     </update>
 

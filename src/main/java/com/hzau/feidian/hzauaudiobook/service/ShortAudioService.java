@@ -1,5 +1,6 @@
 package com.hzau.feidian.hzauaudiobook.service;
 
+import com.alibaba.fastjson.JSON;
 import com.hzau.feidian.hzauaudiobook.dao.entity.ShortAudio;
 import com.hzau.feidian.hzauaudiobook.dao.mapper.ShortAudioMapper;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,14 @@ public class ShortAudioService {
         return audios;
     }
 
-    public void check(long id, boolean approved) {
-        shortAudioMapper.updateApprove(id, approved);
+    public void check(long id, boolean approved, String reason) {
+        shortAudioMapper.updateApprove(id, approved, reason);
+    }
+
+    public void disApprove(String data) {
+        System.out.println(data);
+        ShortAudio shortAudio = JSON.parseObject(data, ShortAudio.class);
+        check(shortAudio.getId(), shortAudio.getApproved(), shortAudio.getReason());
     }
 
 }
