@@ -87,25 +87,25 @@ public class WeChatController {
         return ResponseBean.ok("评论成功");
     }
 
-    @RequestMapping("/thumb/shortComment")
+    @RequestMapping("/thumb/shortComment/{id}")
     public ResponseBean thumbShortComment(@PathVariable long id) {
         weChatService.thumbComment(id, false);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/thumb/bookComment")
+    @RequestMapping("/thumb/bookComment/{id}")
     public ResponseBean thumbBookComment(@PathVariable long id) {
         weChatService.thumbComment(id, true);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/thumb/shortComment/{id}")
+    @RequestMapping("/thumb/shortAudio/{id}")
     public ResponseBean thumbShortAudio(@PathVariable long id) {
         weChatService.thumbAudio(id, false);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/thumb/bookComment/{id}")
+    @RequestMapping("/thumb/bookAudio/{id}")
     public ResponseBean thumbBookAudio(@PathVariable long id) {
         weChatService.thumbAudio(id, true);
         return ResponseBean.ok();
