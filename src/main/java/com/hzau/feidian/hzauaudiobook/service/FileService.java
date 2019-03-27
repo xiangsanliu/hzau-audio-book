@@ -1,6 +1,8 @@
 package com.hzau.feidian.hzauaudiobook.service;
 
 import com.hzau.feidian.hzauaudiobook.share.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +26,8 @@ public class FileService {
     @Value("${upload-folder}")
     private String uploadFolder;
 
+    private static final Logger logger = LoggerFactory.getLogger(FileService.class);
+
     public Pair<Boolean, String> uploadFile(MultipartFile file, String parentDir) throws IOException {
         return uploadFile(file, parentDir, file.getOriginalFilename(), false);
     }
@@ -33,6 +37,7 @@ public class FileService {
             return new Pair<>(false, "空文件");
         }
         File dir = new File(uploadFolder + parentDir);
+        logger.info("Dir: " + dir.getAbsolutePath());
         if (dir.exists() || dir.mkdir()) {
             byte[] bytes = file.getBytes();
             Path realPath = Paths.get(dir.getAbsolutePath() + File.separator + fileName);
