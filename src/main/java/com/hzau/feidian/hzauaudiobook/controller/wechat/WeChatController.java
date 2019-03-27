@@ -133,4 +133,33 @@ public class WeChatController {
         return ResponseBean.ok(null, weChatService.listShortAudioComments(id));
     }
 
+    @RequestMapping("/getFavourite/{openid}")
+    public ResponseBean getFavourite(@PathVariable String openid) {
+        return ResponseBean.ok(null, weChatService.getFavourite(openid));
+    }
+
+    @RequestMapping("/addFavouriteBook")
+    public ResponseBean addFavouriteBook(String data) {
+        weChatService.addFavourite(data, true);
+        return ResponseBean.ok();
+    }
+
+    @RequestMapping("/addFavouriteShort")
+    public ResponseBean addFavouriteShort(String data) {
+        weChatService.addFavourite(data, false);
+        return ResponseBean.ok();
+    }
+
+    @RequestMapping("/removeFavouriteBook")
+    public ResponseBean removeFavouriteBook(String data) {
+        weChatService.removeFavourite(data, true);
+        return ResponseBean.ok();
+    }
+
+    @RequestMapping("/removeFavouriteShort")
+    public ResponseBean removeFavouriteShort(String data) {
+        weChatService.removeFavourite(data, false);
+        return ResponseBean.ok();
+    }
+
 }

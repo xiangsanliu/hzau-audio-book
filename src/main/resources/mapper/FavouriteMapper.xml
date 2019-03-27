@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.FavouriteMapper">
+    <insert id="insertFBA">
+        insert into favourite_book_audio(openid, bookAudioId) value (#{openid}, #{bookAudioId});
+    </insert>
+
+    <insert id="insertFSA">
+        insert into favourite_short_audio(openid, shortAudioId) value (#{openid}, #{shortAudioId});
+    </insert>
+
+    <delete id="deleteFBA">
+        delete
+        from favourite_book_audio
+        where openid = #{openid}
+          and bookAudioId = #{bookAudioId}
+    </delete>
+    <delete id="deleteFSA">
+        delete
+        from favourite_short_audio
+        where openid = #{openid}
+          and shortAudioId = #{shortAudioId}
+    </delete>
+
+
+    <select id="selectFBA" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.FavouriteBookAudio">
+        select fba.openid,
+               bookAudioId,
+               ba.name   name,
+               b.name    bookName,
+               ba.bookId bookId
+        from favourite_book_audio fba
+                 join book_audio ba on fba.bookAudioId = ba.id
+                 join book b on ba.bookId = b.id
+        where openid = #{openid};
+    </select>
+
+    <select id="selectFSA" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.FavouriteShortAudio">
+        select fsa.openid,
+               shortAudioId,
+               actId,
+               actName,
+               content,
+               fileName,
+               u.name,
+               u.majorAndClass,
+               u.avatarUrl
+        from favourite_short_audio fsa
+                 join short_audio sa on fsa.shortAudioId = sa.id
+                 join user u on fsa.openid = u.openid
+        where fsa.openid = #{openid}
+          and approved = true;
+    </select>
+</mapper>

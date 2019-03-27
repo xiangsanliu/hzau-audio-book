@@ -22,6 +22,10 @@ public class BookAudio {
 
     private Long bookId;
 
+    private int thumb;
+
+    private int amount;
+
     public BookAudio(String name, Long bookId) {
         this.name = name;
         this.bookId = bookId;

@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -44,6 +46,9 @@ public class WeChatService {
 
     @Resource
     private CommentMapper commentMapper;
+
+    @Resource
+    private FavouriteMapper favouriteMapper;
 
     public List<BookList> getBookListAndBooks() {
         List<BookList> bookLists = bookListMapper.selectAllBookLists();
@@ -98,6 +103,33 @@ public class WeChatService {
         } else {
             commentMapper.incShortThumb(id);
         }
+    }
+
+    public void addFavourite(String data, boolean flag) {
+        if (flag) {
+            FavouriteBookAudio audio = JSON.parseObject(data, FavouriteBookAudio.class);
+            favouriteMapper.insertFBA(audio.getOpenid(), audio.getBookAudioId());
+        } else {
+            FavouriteShortAudio audio = JSON.parseObject(data, FavouriteShortAudio.class);
+            favouriteMapper.insertFSA(audio.getOpenid(), audio.getShortAudioId());
+        }
+    }
+
+    public void removeFavourite(String data, boolean flag) {
+        if (flag) {
+            FavouriteBookAudio audio = JSON.parseObject(data, FavouriteBookAudio.class);
+            favouriteMapper.deleteFBA(audio.getOpenid(), audio.getBookAudioId());
+        } else {
+            FavouriteShortAudio audio = JSON.parseObject(data, FavouriteShortAudio.class);
+            favouriteMapper.deleteFSA(audio.getOpenid(), audio.getShortAudioId());
+        }
+    }
+
+    public Map<String, List> getFavourite(String openid) {
+        Map<String, List> result = new HashMap<>();
+        result.put("book", favouriteMapper.selectFBA(openid));
+        result.put("short", favouriteMapper.selectFSA(openid));
+        return result;
     }
 
     public void thumbAudio(long id, boolean flag) {

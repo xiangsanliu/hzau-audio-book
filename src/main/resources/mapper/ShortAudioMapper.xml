@@ -57,6 +57,8 @@
                sa.openid,
                sa.filename,
                sa.uploadTime,
+               sa.thumb,
+               sa.amount,
                u.name,
                u.majorAndClass,
                u.qq,

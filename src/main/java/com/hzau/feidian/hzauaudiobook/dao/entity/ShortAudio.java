@@ -51,4 +51,8 @@ public class ShortAudio {
 
     private String phoneNum;
 
+    private int thumb;
+
+    private int amount;
+
 }
