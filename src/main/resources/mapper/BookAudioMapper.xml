@@ -10,12 +10,6 @@
             VALUE (#{bookAudio.name}, #{bookAudio.bookId});
     </insert>
 
-    <update id="incThumb">
-        update book_audio
-        set thumb = thumb + '1'
-        where id = #{id};
-    </update>
-
     <update id="incAmount">
         update book_audio
         set amount = amount + '1'
@@ -35,18 +29,50 @@
     </delete>
 
     <select id="selectBookAudiosByBook" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.BookAudio">
-        select ba.id id, ba.name name, book.name bookName, ba.thumb, ba.amount
+        select ba.id                as id,
+               ba.name              as name,
+               book.name            as bookName,
+               count(tba.openid)    as thumb,
+               ba.amount,
+               ifnull((select 1
+                       from thumb_book_audio t
+                       where t.openid = #{openid}
+                         and t.bookAudioId = ba.id
+                       limit 1), 0) as thumbed,
+               ifnull((select 1
+                       from favourite_book_audio t
+                       where t.openid = #{openid}
+                         and t.bookAudioId = ba.id
+                       limit 1), 0) as favourite
         from book_audio ba
                  left join book on book.id = ba.bookId
+                 left join thumb_book_audio tba on ba.id = tba.bookAudioId
         where ba.bookId = #{bookId}
+        group by ba.id;
     </select>
 
     <select id="selectOne" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.BookAudio">
-        select ba.id id, ba.name name, book.name bookName, ba.thumb, ba.amount
+        select ba.id                as id,
+               ba.name              as name,
+               book.name            as bookName,
+               count(tba.openid)    as thumb,
+               ba.amount,
+               ifnull((select 1
+                       from thumb_book_audio t
+                       where t.openid = #{openid}
+                         and t.bookAudioId = ba.id
+                       limit 1), 0) as thumbed,
+               ifnull((select 1
+                       from favourite_book_audio t
+                       where t.openid = ''
+                         and t.bookAudioId = ba.id
+                       limit 1), 0) as favourite
         from book_audio ba
                  left join book on book.id = ba.bookId
-        where ba.id = #{id}
-        limit 1
+                 left join thumb_book_audio tba on ba.id = tba.bookAudioId
+        where ba.bookId = #{bookId}
+        group by ba.id
+        limit 1;
     </select>
 
 </mapper>

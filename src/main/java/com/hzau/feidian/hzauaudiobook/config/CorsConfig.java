@@ -9,7 +9,7 @@ import org.springframework.web.filter.CorsFilter;
 /**
  * @author 项三六
  * @time 2019/3/29 21:31
- * @comment
+ * @comment 允许跨域访问配置
  */
 
 @Configuration

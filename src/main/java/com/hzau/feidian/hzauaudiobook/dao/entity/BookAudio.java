@@ -24,6 +24,10 @@ public class BookAudio {
 
     private int thumb;
 
+    private boolean thumbed;
+
+    private boolean favourite;
+
     private int amount;
 
     public BookAudio(String name, Long bookId) {

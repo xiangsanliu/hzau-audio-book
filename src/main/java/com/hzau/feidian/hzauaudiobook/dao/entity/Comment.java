@@ -26,6 +26,8 @@ public class Comment {
 
     private int thumb;
 
+    private boolean thumbed;
+
     private Timestamp commentTime;
 
 }

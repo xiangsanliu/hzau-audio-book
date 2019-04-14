@@ -14,30 +14,45 @@
             value (#{comment.bookAudioId}, #{comment.content}, #{comment.openid});
     </insert>
 
-    <update id="incBookThumb">
-        update comment_book_audio
-        set thumb = thumb + '1'
-        where id = #{id};
-    </update>
-
-    <update id="incShortThumb">
-        update comment_short_audio
-        set thumb = thumb + '1'
-        where id = #{id};
-    </update>
-
     <select id="selectByBook" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Comment">
-        select cba.id, cba.content, cba.thumb, cba.commentTime, u.gender, u.avatarUrl, u.name
+        select cba.id,
+               cba.content,
+               count(tcba.openid)   as thumb,
+               ifnull((select 1
+                       from thumb_comment_book_audio t
+                       where t.openid = #{openid}
+                         and t.commentBookAudioId = cba.id
+                       limit 1), 0) as thumbed,
+               cba.commentTime,
+               u.gender,
+               u.avatarUrl,
+               u.name
         from comment_book_audio cba
                  left join user u on cba.openid = u.openid
-        where bookAudioId = #{id};
+                 left join thumb_comment_book_audio tcba on cba.id = tcba.commentBookAudioId
+        where bookAudioId = #{id}
+        group by cba.id;
     </select>
 
     <select id="selectByShort" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Comment">
-        select csa.id, csa.content, csa.thumb, csa.commentTime, u.gender, u.avatarUrl, u.name
+        select csa.id,
+               csa.content,
+               count(tcsa.openid) as thumb,
+               ifnull((select 1
+                       from thumb_comment_short_audio t
+                       where t.openid = #{openid}
+                         and t.commentShortAudioId = csa.id
+                       limit 1),
+                      0)          as thumbed,
+               csa.commentTime,
+               u.gender,
+               u.avatarUrl,
+               u.name
         from comment_short_audio csa
                  left join user u on csa.openid = u.openid
-        where shortAudioId = #{id};
+                 left join thumb_comment_short_audio tcsa on csa.id = tcsa.commentShortAudioId
+        where shortAudioId = #{id}
+        group by csa.id;
     </select>
 
 </mapper>

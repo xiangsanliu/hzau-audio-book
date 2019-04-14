@@ -11,15 +11,13 @@ public interface BookAudioMapper {
 
     int insert(@Param("bookAudio") BookAudio bookAudio);
 
-    List<BookAudio> selectBookAudiosByBook(@Param("bookId") long bookId);
+    List<BookAudio> selectBookAudiosByBook(@Param("openid") String openid, @Param("bookId") long bookId);
 
     BookAudio selectOne(@Param("id") long id);
 
     int deleteOne(@Param("id") long id);
 
     int deleteByBook(@Param("bookId") long bookId);
-
-    int incThumb(@Param("id") long id);
 
     int incAmount(@Param("id") long id);
 

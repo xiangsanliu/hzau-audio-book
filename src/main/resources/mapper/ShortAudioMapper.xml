@@ -17,11 +17,6 @@
         where id = #{id};
     </update>
 
-    <update id="incThumb">
-        update short_audio
-        set thumb = thumb + '1'
-        where id = #{id};
-    </update>
     <update id="incAmount">
         update short_audio
         set amount = amount + '1'
@@ -57,14 +52,26 @@
                sa.openid,
                sa.filename,
                sa.uploadTime,
-               sa.thumb,
+               count(tsa.openid)    as thumb,
                sa.amount,
                u.name,
                u.majorAndClass,
                u.qq,
-               u.phoneNum
+               u.phoneNum,
+               ifnull((select 1
+                       from thumb_short_audio t
+                       where t.openid = #{openid}
+                         and t.shortAudioId = sa.id
+                       limit 1), 0) as thumbed,
+               ifnull((select 1
+                       from favourite_short_audio t
+                       where t.openid = #{openid}
+                         and t.shortAudioId = sa.id
+                       limit 1), 0) as favourite
         from short_audio sa
                  left join user u on sa.openid = u.openid
-        where approved = true;
+                 left join thumb_short_audio tsa on sa.id = tsa.shortAudioId
+        where approved = true
+        group by sa.id;
     </select>
 </mapper>

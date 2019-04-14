@@ -19,12 +19,8 @@ public interface CommentMapper {
 
     int insertIntoShortAudio(@Param("comment") Comment comment);
 
-    List<Comment> selectByBook(@Param("id") long id);
+    List<Comment> selectByBook(@Param("openid") String openid, @Param("id") long id);
 
-    List<Comment> selectByShort(@Param("id") long id);
-
-    int incBookThumb(@Param("id") long id);
-
-    int incShortThumb(@Param("id") long id);
+    List<Comment> selectByShort(@Param("openid") String openid, @Param("id") long id);
 
 }

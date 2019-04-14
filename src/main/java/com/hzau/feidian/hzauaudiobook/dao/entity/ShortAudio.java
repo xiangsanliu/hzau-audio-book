@@ -53,6 +53,10 @@ public class ShortAudio {
 
     private int thumb;
 
+    private boolean thumbed;
+
+    private boolean favourite;
+
     private int amount;
 
 }

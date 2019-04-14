@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.FavouriteMapper">
+
     <insert id="insertFBA">
         insert into favourite_book_audio(openid, bookAudioId) value (#{openid}, #{bookAudioId});
     </insert>
@@ -23,7 +24,6 @@
         where openid = #{openid}
           and shortAudioId = #{shortAudioId}
     </delete>
-
 
     <select id="selectFBA" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.FavouriteBookAudio">
         select fba.openid,

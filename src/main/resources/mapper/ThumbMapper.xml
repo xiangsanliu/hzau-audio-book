@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.ThumbMapper">
+
+    <insert id="insertTBA">
+        insert into thumb_book_audio(openid, bookAudioId) value (#{openid}, #{bookAudioId});
+    </insert>
+
+    <insert id="insertTSA">
+        insert into thumb_short_audio(openid, shortAudioId) value (#{openid}, #{shortAudioId});
+    </insert>
+
+    <insert id="insertTCBA">
+        insert into thumb_comment_book_audio(openid, commentBookAudioId) value (#{openid}, #{commentBookAudioId})
+    </insert>
+
+    <insert id="insertTCSA">
+        insert into thumb_comment_short_audio(openid, commentShortAudioId) value (#{openid}, #{commentShortAudioId})
+    </insert>
+
+    <delete id="deleteTBA">
+        delete
+        from thumb_book_audio
+        where openid = #{openid}
+          and bookAudioId = #{bookAudioId}
+    </delete>
+
+    <delete id="deleteTSA">
+        delete
+        from thumb_short_audio
+        where openid = #{openid}
+          and shortAudioId = #{shortAudioId}
+    </delete>
+
+    <delete id="deleteTCBA">
+        delete
+        from thumb_comment_book_audio
+        where openid = #{openid}
+          and commentBookAudioId = #{commentBookAudioId}
+
+    </delete>
+
+    <delete id="deleteTCSA">
+        delete
+        from thumb_comment_short_audio
+        where openid = #{openid}
+          and commentShortAudioId = #{commentShortAudioId}
+
+    </delete>
+
+</mapper>
