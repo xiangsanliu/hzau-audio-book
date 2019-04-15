@@ -33,10 +33,6 @@ public class AudioService {
         return book;
     }
 
-    public User getUserInfo(String openid) {
-        return userMapper.selectByOpenId(openid);
-    }
-
     public void saveShortAudio(ShortAudio audio) {
         shortAudioMapper.insert(audio);
     }

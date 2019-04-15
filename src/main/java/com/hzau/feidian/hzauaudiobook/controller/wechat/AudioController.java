@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/wechat/{openid}")
+@RequestMapping("wechat/{openid}/audio/")
 public class AudioController {
 
     private final AudioService audioService;
@@ -27,22 +27,17 @@ public class AudioController {
         this.fileService = fileService;
     }
 
-    @RequestMapping("/getBookById/{id}")
+    @RequestMapping("getBookById/{id}")
     public ResponseBean getBookById(@PathVariable String openid, @PathVariable long id) {
         return ResponseBean.ok("success", audioService.getBookById(openid, id));
     }
 
-    @RequestMapping("/getAllShortAudios")
+    @RequestMapping("getAllShortAudios")
     public ResponseBean getAllShortAudios(@PathVariable String openid) {
         return ResponseBean.ok("success", audioService.getAllApprovedShortAudios(openid));
     }
 
-    @RequestMapping("/getUserInfo")
-    public ResponseBean getUserInfo(@PathVariable String openid) {
-        return ResponseBean.ok("success", audioService.getUserInfo(openid));
-    }
-
-    @RequestMapping("/upload")
+    @RequestMapping("upload")
     public ResponseBean uploadFile(ShortAudio shortAudio) {
         String parentDir = "activities" + File.separator + shortAudio.getActName();
         String fileName = System.currentTimeMillis() + ".mp3";

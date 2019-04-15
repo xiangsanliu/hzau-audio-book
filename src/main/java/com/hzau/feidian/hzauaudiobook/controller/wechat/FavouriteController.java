@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/wechat/{openid}")
+@RequestMapping("wechat/{openid}/favourite/")
 public class FavouriteController {
 
     private final FavouriteService favouriteService;
@@ -22,30 +22,30 @@ public class FavouriteController {
         this.favouriteService = favouriteService;
     }
 
-    @RequestMapping("/getByUser")
+    @RequestMapping("getByUser")
     public ResponseBean getByUser(@PathVariable String openid) {
         return ResponseBean.ok(null, favouriteService.getFavourite(openid));
     }
 
-    @RequestMapping("/addBook/{id}")
+    @RequestMapping("addBook/{id}")
     public ResponseBean addBook(@PathVariable String openid, @PathVariable long id) {
         favouriteService.addFavourite(openid, id, true);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/addShort/{id}")
+    @RequestMapping("addShort/{id}")
     public ResponseBean addShort(@PathVariable String openid, @PathVariable long id) {
         favouriteService.addFavourite(openid, id, false);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/removeBook/{id}")
+    @RequestMapping("removeBook/{id}")
     public ResponseBean removeBook(@PathVariable String openid, @PathVariable long id) {
         favouriteService.removeFavourite(openid, id, true);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/removeShort/{id}")
+    @RequestMapping("removeShort/{id}")
     public ResponseBean removeShort(@PathVariable String openid, @PathVariable long id) {
         favouriteService.removeFavourite(openid, id, false);
         return ResponseBean.ok();

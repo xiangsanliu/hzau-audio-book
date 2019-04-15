@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 
 @RestController
-@RequestMapping("/wechat/common")
+@RequestMapping("wechat/common/")
 public class CommonController {
 
     private final AuthService authService;
@@ -31,12 +31,12 @@ public class CommonController {
         this.commonService = commonService;
     }
 
-    @RequestMapping("/getBookListAndBooks")
+    @RequestMapping("getBookListAndBooks")
     public ResponseBean getBookListAndBooks() {
         return ResponseBean.ok("success", commonService.getBookListAndBooks());
     }
 
-    @RequestMapping("/auth/{code}")
+    @RequestMapping("auth/{code}")
     public ResponseBean auth(@PathVariable String code, @RequestBody String data) {
         try {
             return ResponseBean.ok("success", authService.auth(code, data));
@@ -45,13 +45,13 @@ public class CommonController {
         }
     }
 
-    @RequestMapping("/incShortAmount/{id}")
+    @RequestMapping("incShortAmount/{id}")
     public ResponseBean incShortAmount(@PathVariable long id) {
         commonService.incShortAmount(id);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/incBookAmount/{id}")
+    @RequestMapping("incBookAmount/{id}")
     public ResponseBean incBookAmount(@PathVariable long id) {
         commonService.incBookAmount(id);
         return ResponseBean.ok();

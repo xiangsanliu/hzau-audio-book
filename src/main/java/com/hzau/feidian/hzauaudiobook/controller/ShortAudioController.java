@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/shortAudio")
+@RequestMapping("shortAudio/")
 public class ShortAudioController {
 
     private final ShortAudioService shortAudioService;
@@ -25,18 +25,18 @@ public class ShortAudioController {
         this.shortAudioService = shortAudioService;
     }
 
-    @RequestMapping("/getAllShortAudios")
+    @RequestMapping("getAllShortAudios")
     public ResponseBean getAllShortAudios() {
         return ResponseBean.ok("success", shortAudioService.getAll());
     }
 
-    @RequestMapping("/approve/{id}")
+    @RequestMapping("approve/{id}")
     public ResponseBean approve(@PathVariable long id) {
         shortAudioService.check(id, true, "");
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/disApprove")
+    @RequestMapping("disApprove")
     public ResponseBean disApprove(@RequestBody String data) {
         shortAudioService.disApprove(data);
         return ResponseBean.ok();

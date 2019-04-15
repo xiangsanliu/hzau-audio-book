@@ -19,7 +19,7 @@ public class TestController {
         this.bookService = bookService;
     }
 
-    @RequestMapping("/test")
+    @RequestMapping("test")
     public List<Book> test() {
         return bookService.listAllBooks();
     }

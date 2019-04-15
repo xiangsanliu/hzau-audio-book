@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/wechat/{openid}/thumb")
+@RequestMapping("wechat/{openid}/thumb")
 public class ThumbController {
 
     private final ThumbService thumbService;
@@ -22,49 +22,49 @@ public class ThumbController {
         this.thumbService = thumbService;
     }
 
-    @RequestMapping("/thumbShortComment/{id}")
+    @RequestMapping("thumbShortComment/{id}")
     public ResponseBean thumbShortComment(@PathVariable String openid, @PathVariable long id) {
         thumbService.thumbComment(openid, id, false);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/thumbBookComment/{id}")
+    @RequestMapping("thumbBookComment/{id}")
     public ResponseBean thumbBookComment(@PathVariable String openid, @PathVariable long id) {
         thumbService.thumbComment(openid, id, true);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/thumbShortAudio/{id}")
+    @RequestMapping("thumbShortAudio/{id}")
     public ResponseBean thumbShortAudio(@PathVariable String openid, @PathVariable long id) {
         thumbService.thumbAudio(openid, id, true);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/thumbBookAudio/{id}")
+    @RequestMapping("thumbBookAudio/{id}")
     public ResponseBean thumbBookAudio(@PathVariable String openid, @PathVariable long id) {
         thumbService.thumbAudio(openid, id, true);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/removeShortComment/{id}")
+    @RequestMapping("removeShortComment/{id}")
     public ResponseBean removeShortComment(@PathVariable String openid, @PathVariable long id) {
         thumbService.removeComment(openid, id, false);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/removeBookComment/{id}")
+    @RequestMapping("removeBookComment/{id}")
     public ResponseBean removeBookComment(@PathVariable String openid, @PathVariable long id) {
         thumbService.removeComment(openid, id, true);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/removeShortAudio/{id}")
+    @RequestMapping("removeShortAudio/{id}")
     public ResponseBean removeShortAudio(@PathVariable String openid, @PathVariable long id) {
         thumbService.removeAudio(openid, id, true);
         return ResponseBean.ok();
     }
 
-    @RequestMapping("/removeBookAudio/{id}")
+    @RequestMapping("removeBookAudio/{id}")
     public ResponseBean removeBookAudio(@PathVariable String openid, @PathVariable long id) {
         thumbService.removeAudio(openid, id, true);
         return ResponseBean.ok();

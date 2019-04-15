@@ -21,7 +21,7 @@ import java.io.IOException;
  */
 
 @RestController
-@RequestMapping("/activity")
+@RequestMapping("activity/")
 public class ActivityController {
 
     private final FileService fileService;
@@ -34,23 +34,23 @@ public class ActivityController {
         this.activityService = activityService;
     }
 
-    @RequestMapping("/editActivity")
+    @RequestMapping("editActivity")
     public ResponseBean editActivity(@RequestBody String data) {
         return ResponseBean.ok(activityService.editActivity(data));
     }
 
-    @RequestMapping("/getAllActivities")
+    @RequestMapping("getAllActivities")
     public ResponseBean getAllActivities() {
         return ResponseBean.ok("success", activityService.listAllActivities());
     }
 
-    @RequestMapping("/remove/{id}")
+    @RequestMapping("remove/{id}")
     public ResponseBean removeActivity(@PathVariable("id") long id) {
         activityService.removeActivity(id);
         return ResponseBean.ok("删除成功");
     }
 
-    @RequestMapping("/upload/{id}/{name}")
+    @RequestMapping("upload/{id}/{name}")
     public ResponseBean uploadPic(MultipartFile file, @PathVariable("id") Long actId,
                                   @PathVariable("name") String actName) {
         String parentDir = "activities" + File.separator + actName;

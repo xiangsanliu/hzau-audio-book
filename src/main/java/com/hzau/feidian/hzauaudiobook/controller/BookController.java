@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/book")
+@RequestMapping("book/")
 public class BookController {
 
     private final BookService bookService;
@@ -19,18 +19,18 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @RequestMapping("/getAllBooks")
+    @RequestMapping("getAllBooks")
     public ResponseBean getAllBooks() {
         return ResponseBean.ok("success", bookService.listAllBooks());
     }
 
-    @RequestMapping("/editBook")
+    @RequestMapping("editBook")
     public ResponseBean editBook(@RequestBody String data) {
         bookService.editBook(data);
         return ResponseBean.ok("成功");
     }
 
-    @RequestMapping("/remove/{id}")
+    @RequestMapping("remove/{id}")
     public ResponseBean remove(@PathVariable("id") long id) {
         bookService.removeOne(id);
         return ResponseBean.ok("删除成功");

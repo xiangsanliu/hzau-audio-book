@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/wechat/{openid}/comment")
+@RequestMapping("wechat/{openid}/comment/")
 public class CommentController {
 
     private final CommentService commentService;
@@ -23,23 +23,23 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @RequestMapping("/getByBook/{id}")
+    @RequestMapping("getByBook/{id}")
     public ResponseBean getByBook(@PathVariable String openid, @PathVariable long id) {
         return ResponseBean.ok(null, commentService.listBookAudioComments(openid, id));
     }
 
-    @RequestMapping("/getByShort/{id}")
+    @RequestMapping("getByShort/{id}")
     public ResponseBean getByShort(@PathVariable String openid, @PathVariable long id) {
         return ResponseBean.ok(null, commentService.listShortAudioComments(openid, id));
     }
 
-    @RequestMapping("/shortAudio")
+    @RequestMapping("shortAudio")
     public ResponseBean shortAudio(@PathVariable String openid, @RequestBody String data) {
         commentService.comment(openid, data, false);
         return ResponseBean.ok("评论成功");
     }
 
-    @RequestMapping("/bookAudio")
+    @RequestMapping("bookAudio")
     public ResponseBean bookAudio(@PathVariable String openid, @RequestBody String data) {
         commentService.comment(openid, data, true);
         return ResponseBean.ok("评论成功");

@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/bookAudio")
+@RequestMapping("bookAudio/")
 public class BookAudioController {
 
     private final BookAudioService bookAudioService;
@@ -29,18 +29,18 @@ public class BookAudioController {
         this.fileService = fileService;
     }
 
-    @RequestMapping(value = "/getBookAudiosByBook/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "getBookAudiosByBook/{id}", method = RequestMethod.GET)
     public ResponseBean getBookAudiosByBook(@PathVariable("id") Long id) {
         return ResponseBean.ok("", bookAudioService.listBookAudiosByBook(id));
     }
 
-    @RequestMapping("/remove/{id}")
+    @RequestMapping("remove/{id}")
     public ResponseBean remove(@PathVariable("id") long id) {
         bookAudioService.removeOne(id);
         return ResponseBean.ok("删除成功");
     }
 
-    @RequestMapping("/upload/{id}/{name}")
+    @RequestMapping("upload/{id}/{name}")
     public ResponseBean uploadBookAudio(MultipartFile file, @PathVariable("id") Long bookId,
                                         @PathVariable("name") String bookName) {
         String parentDir = "books" + File.separator + bookName;
