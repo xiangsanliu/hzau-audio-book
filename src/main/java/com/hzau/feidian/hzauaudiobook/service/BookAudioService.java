@@ -28,7 +28,7 @@ public class BookAudioService {
     }
 
     public List<BookAudio> listBookAudiosByBook(long id) {
-        List<BookAudio> bookAudios = bookAudioMapper.selectBookAudiosByBook(id);
+        List<BookAudio> bookAudios = bookAudioMapper.selectBookAudiosByBook(null,id);
         bookAudios.forEach(item -> {
             String url = "books/" + item.getBookName() + '/' + item.getName();
             item.setUrl(url);

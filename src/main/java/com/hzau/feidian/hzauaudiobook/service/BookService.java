@@ -40,7 +40,7 @@ public class BookService {
 
     @Transactional
     public void removeOne(long id) {
-        List<BookAudio> bookAudios = bookAudioMapper.selectBookAudiosByBook(id);
+        List<BookAudio> bookAudios = bookAudioMapper.selectBookAudiosByBook(null, id);
         for (BookAudio item : bookAudios) {
             String path = baseFolder + "books" + File.separator + item.getBookName() + File.separator + item.getName();
             File file = new File(path);

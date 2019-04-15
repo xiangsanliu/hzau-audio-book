@@ -1,14 +1,13 @@
 package com.hzau.feidian.hzauaudiobook.service.wechat;
 
-import com.alibaba.fastjson.JSON;
-import com.hzau.feidian.hzauaudiobook.dao.entity.FavouriteBookAudio;
-import com.hzau.feidian.hzauaudiobook.dao.entity.FavouriteShortAudio;
+import com.hzau.feidian.hzauaudiobook.dao.entity.BookList;
 import com.hzau.feidian.hzauaudiobook.dao.mapper.BookAudioMapper;
-import com.hzau.feidian.hzauaudiobook.dao.mapper.FavouriteMapper;
+import com.hzau.feidian.hzauaudiobook.dao.mapper.BookListMapper;
 import com.hzau.feidian.hzauaudiobook.dao.mapper.ShortAudioMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author 项三六
@@ -20,14 +19,19 @@ import javax.annotation.Resource;
 public class CommonService {
 
     @Resource
-    private FavouriteMapper favouriteMapper;
-
-    @Resource
     private BookAudioMapper bookAudioMapper;
 
     @Resource
     private ShortAudioMapper shortAudioMapper;
 
+    @Resource
+    private BookListMapper bookListMapper;
+
+    public List<BookList> getBookListAndBooks() {
+        List<BookList> bookLists = bookListMapper.selectAllBookLists();
+        bookLists.forEach(item -> item.setBooks(bookListMapper.selectBooksByBookList(item.getId())));
+        return bookLists;
+    }
 
     public void incBookAmount(long id) {
         bookAudioMapper.incAmount(id);
@@ -36,16 +40,5 @@ public class CommonService {
     public void incShortAmount(long id) {
         shortAudioMapper.incAmount(id);
     }
-
-    public void addFavourite(String data, boolean flag) {
-        if (flag) {
-            FavouriteBookAudio audio = JSON.parseObject(data, FavouriteBookAudio.class);
-            favouriteMapper.insertFBA(audio.getOpenid(), audio.getBookAudioId());
-        } else {
-            FavouriteShortAudio audio = JSON.parseObject(data, FavouriteShortAudio.class);
-            favouriteMapper.insertFSA(audio.getOpenid(), audio.getShortAudioId());
-        }
-    }
-
 
 }

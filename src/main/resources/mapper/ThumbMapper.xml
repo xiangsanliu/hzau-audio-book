@@ -39,7 +39,6 @@
         from thumb_comment_book_audio
         where openid = #{openid}
           and commentBookAudioId = #{commentBookAudioId}
-
     </delete>
 
     <delete id="deleteTCSA">
@@ -47,7 +46,6 @@
         from thumb_comment_short_audio
         where openid = #{openid}
           and commentShortAudioId = #{commentShortAudioId}
-
     </delete>
 
 </mapper>
