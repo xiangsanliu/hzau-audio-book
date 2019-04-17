@@ -24,6 +24,15 @@ public class Comment {
 
     private String avatarUrl;
 
+    // 活动名或书名
+    private String parentName;
+
+    private String status;
+
+    private Boolean checked;
+
+    private Boolean approved;
+
     private int thumb;
 
     private boolean thumbed;

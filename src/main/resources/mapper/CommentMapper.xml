@@ -14,6 +14,22 @@
             value (#{comment.bookAudioId}, #{comment.content}, #{comment.openid});
     </insert>
 
+    <update id="updateShortApprove">
+        update comment_short_audio
+        set checked  = true,
+            approved = #{approved}
+        where id = #{id}
+        limit 1;
+    </update>
+
+    <update id="updateBookApprove">
+        update comment_book_audio
+        set checked  = true,
+            approved = #{approved}
+        where id = #{id}
+        limit 1;
+    </update>
+
     <select id="selectByBook" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Comment">
         select cba.id,
                cba.content,
@@ -53,6 +69,39 @@
                  left join thumb_comment_short_audio tcsa on csa.id = tcsa.commentShortAudioId
         where shortAudioId = #{id}
         group by csa.id;
+    </select>
+
+    <select id="selectAllBookComment" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Comment">
+        select cba.id,
+               cba.content,
+               cba.commentTime,
+               cba.approved,
+               cba.checked,
+               u.gender,
+               u.avatarUrl,
+               u.name as name,
+               b.name as parentName
+        from comment_book_audio cba
+                 left join user u on cba.openid = u.openid
+                 left join thumb_comment_book_audio tcba on cba.id = tcba.commentBookAudioId
+                 left join book_audio ba on cba.bookAudioId = ba.id
+                 left join book b on ba.bookId = b.id
+    </select>
+
+    <select id="selectAllShortComment" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Comment">
+        select csa.id,
+               csa.content,
+               csa.commentTime,
+               csa.approved,
+               csa.checked,
+               u.gender,
+               u.avatarUrl,
+               u.name,
+               sa.actName as parentName
+        from comment_short_audio csa
+                 left join user u on csa.openid = u.openid
+                 left join thumb_comment_short_audio tcsa on csa.id = tcsa.commentShortAudioId
+                 left join short_audio sa on csa.shortAudioId = sa.id
     </select>
 
 </mapper>

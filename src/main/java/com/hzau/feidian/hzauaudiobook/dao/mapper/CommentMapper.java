@@ -23,4 +23,12 @@ public interface CommentMapper {
 
     List<Comment> selectByShort(@Param("openid") String openid, @Param("id") long id);
 
+    List<Comment> selectAllBookComment();
+
+    List<Comment> selectAllShortComment();
+
+    int updateShortApprove(@Param("id") long id, @Param("approved") boolean approved);
+
+    int updateBookApprove(@Param("id") long id, @Param("approved") boolean approved);
+
 }
