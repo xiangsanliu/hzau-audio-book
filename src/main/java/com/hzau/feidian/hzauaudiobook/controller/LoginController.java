@@ -29,4 +29,13 @@ public class LoginController {
         return loginService.login(data, session);
     }
 
+    @RequestMapping(value = "validate", method = RequestMethod.GET)
+    public ResponseBean validateLogin(HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            return ResponseBean.ok();
+        } else {
+            return ResponseBean.error("未登录,请先登录!");
+        }
+    }
+
 }
