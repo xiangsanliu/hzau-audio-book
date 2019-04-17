@@ -33,7 +33,6 @@
                sa.approved,
                sa.checked,
                sa.uploadTime,
-               sa.thumb,
                sa.amount,
                sa.reason,
                u.name,
