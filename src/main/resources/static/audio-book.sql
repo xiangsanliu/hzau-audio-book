@@ -196,3 +196,5 @@ create table thumb_short_audio
 );
 
 insert into activity(id, name) VALUE (0, '非活动');
+
+insert into user(openid, name) value ('admin','');
