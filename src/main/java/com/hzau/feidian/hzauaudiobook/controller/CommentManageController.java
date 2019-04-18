@@ -1,6 +1,6 @@
 package com.hzau.feidian.hzauaudiobook.controller;
 
-import com.hzau.feidian.hzauaudiobook.service.CommentService;
+import com.hzau.feidian.hzauaudiobook.service.CommentManageService;
 import com.hzau.feidian.hzauaudiobook.share.ResponseBean;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,45 +14,45 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/comment")
-public class CommentController {
+public class CommentManageController {
 
-    private final CommentService commentService;
+    private final CommentManageService commentManageService;
 
-    public CommentController(CommentService commentService) {
-        this.commentService = commentService;
+    public CommentManageController(CommentManageService commentManageService) {
+        this.commentManageService = commentManageService;
     }
 
     @RequestMapping("/getAllBookComment")
     public ResponseBean getAllBookComment() {
-        return ResponseBean.ok("success", commentService.getAllBookComment());
+        return ResponseBean.ok("success", commentManageService.getAllBookComment());
     }
 
     @RequestMapping("/getAllShortComment")
     public ResponseBean getAllShortComment() {
-        return ResponseBean.ok("success", commentService.getAllShortComment());
+        return ResponseBean.ok("success", commentManageService.getAllShortComment());
     }
 
     @RequestMapping("/approveBook/{id}")
     public ResponseBean approveBook(@PathVariable long id) {
-        commentService.checkBook(id, true);
+        commentManageService.checkBook(id, true);
         return ResponseBean.ok();
     }
 
     @RequestMapping("/approveShort/{id}")
     public ResponseBean approveShort(@PathVariable long id) {
-        commentService.checkShort(id, true);
+        commentManageService.checkShort(id, true);
         return ResponseBean.ok();
     }
 
     @RequestMapping("/disapproveBook/{id}")
     public ResponseBean disapproveBook(@PathVariable long id) {
-        commentService.checkBook(id, false);
+        commentManageService.checkBook(id, false);
         return ResponseBean.ok();
     }
 
     @RequestMapping("/disapproveShort/{id}")
     public ResponseBean disapproveShort(@PathVariable long id) {
-        commentService.checkShort(id, false);
+        commentManageService.checkShort(id, false);
         return ResponseBean.ok();
     }
 

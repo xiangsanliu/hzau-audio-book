@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Service
-public class CommentService {
+public class CommentManageService {
 
     @Resource
     private CommentMapper commentMapper;
