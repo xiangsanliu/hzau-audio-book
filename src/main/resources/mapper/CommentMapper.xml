@@ -78,6 +78,9 @@
                cba.approved,
                cba.checked,
                u.gender,
+               u.majorAndClass,
+               u.qq,
+               u.phoneNum,
                u.avatarUrl,
                u.name as name,
                b.name as parentName
@@ -95,6 +98,9 @@
                csa.approved,
                csa.checked,
                u.gender,
+               u.majorAndClass,
+               u.qq,
+               u.phoneNum,
                u.avatarUrl,
                u.name,
                sa.actName as parentName

@@ -27,6 +27,14 @@ public class Comment {
     // 活动名或书名
     private String parentName;
 
+    private String gender;
+
+    private String majorAndClass;
+
+    private String qq;
+
+    private String phoneNum;
+
     private String status;
 
     private Boolean checked;
