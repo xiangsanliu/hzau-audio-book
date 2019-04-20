@@ -48,7 +48,7 @@ public class AudioService {
                 e.setStatus("审核未通过");
             }
         });
-        return shortAudioMapper.selectMy(openid);
+        return shortAudios;
     }
 
 
