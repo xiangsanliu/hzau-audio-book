@@ -21,7 +21,7 @@
 
     <update id="updatePoster">
         update book
-        set posterUpdated = true
+        set posterUploaded = true
         where id = #{bookId}
     </update>
 

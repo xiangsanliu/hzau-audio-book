@@ -36,6 +36,12 @@ public class CommonController {
         return ResponseBean.ok("success", commonService.getBookListAndBooks());
     }
 
+    @RequestMapping("getAllActivities")
+    public ResponseBean getAllActivities() {
+        return ResponseBean.ok("success", commonService.getAllActivities());
+    }
+
+
     @RequestMapping("auth/{code}")
     public ResponseBean auth(@PathVariable String code, @RequestBody String data) {
         try {

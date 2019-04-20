@@ -19,7 +19,7 @@
     </update>
     <update id="updatePoster">
         update activity
-        set posterUpdated = true
+        set posterUploaded = true
         where id = #{actId}
     </update>
     <delete id="delete">
@@ -29,9 +29,13 @@
     </delete>
 
     <select id="selectAllActivities" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Activity">
-        select *
+        select id   as id,
+               name as name,
+               `desc`,
+               uploadTime,
+               posterUploaded
         from activity
-        where id != 0
+        where id != 1
     </select>
     <select id="selectOne" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Activity">
         select *
