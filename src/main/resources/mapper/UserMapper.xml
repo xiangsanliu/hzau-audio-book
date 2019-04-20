@@ -5,8 +5,8 @@
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.UserMapper">
 
     <insert id="insert">
-        insert ignore into user(openid, avatarUrl, gender)
-            value (#{user.openid}, #{user.avatarUrl}, #{user.gender});
+        insert ignore into user(openid, avatarUrl, gender, graduated)
+            value (#{user.openid}, #{user.avatarUrl}, #{user.gender}, #{user.graduated});
     </insert>
 
     <update id="update">
@@ -14,7 +14,8 @@
         set name          = #{user.name},
             majorAndClass = #{user.majorAndClass},
             qq            = #{user.qq},
-            phoneNum      = #{user.phoneNum}
+            phoneNum      = #{user.phoneNum},
+            graduated     = #{user.graduated}
         where openid = #{user.openid};
     </update>
 
