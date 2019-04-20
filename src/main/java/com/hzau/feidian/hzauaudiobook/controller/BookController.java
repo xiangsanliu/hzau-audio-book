@@ -46,7 +46,7 @@ public class BookController {
     }
 
     @RequestMapping("upload/{id}/{name}")
-    public ResponseBean uploadPic(MultipartFile file, @PathVariable("id") Long actId,
+    public ResponseBean uploadPic(MultipartFile file, @PathVariable("id") Long bookId,
                                   @PathVariable("name") String bookName) {
         String parentDir = "books" + File.separator + bookName;
         String fileName = bookName + ".jpg";
@@ -57,6 +57,7 @@ public class BookController {
             return ResponseBean.error("IO错误");
         }
         if (result.getKey()) {
+            bookService.uploadPoster(bookId);
             return ResponseBean.ok("books/" + bookName + '/' + fileName);
         }
         return ResponseBean.error(result.getValue());

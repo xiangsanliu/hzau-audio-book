@@ -62,6 +62,7 @@ public class ActivityController {
             return ResponseBean.error("IO错误");
         }
         if (result.getKey()) {
+            activityService.uploadPoster(actId);
             return ResponseBean.ok("activities/" + actName + '/' + fileName);
         }
         return ResponseBean.error(result.getValue());

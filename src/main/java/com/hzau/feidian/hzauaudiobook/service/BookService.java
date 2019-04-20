@@ -49,4 +49,8 @@ public class BookService {
         bookMapper.deleteOne(id);
     }
 
+    public void uploadPoster(long actId) {
+        bookMapper.updatePoster(actId);
+    }
+
 }

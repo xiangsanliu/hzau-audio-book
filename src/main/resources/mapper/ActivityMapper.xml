@@ -17,6 +17,11 @@
             uploadTime = current_timestamp
         where id = #{activity.id}
     </update>
+    <update id="updatePoster">
+        update activity
+        set posterUpdated = true
+        where id = #{actId}
+    </update>
     <delete id="delete">
         delete
         from activity

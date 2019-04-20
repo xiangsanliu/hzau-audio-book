@@ -17,6 +17,14 @@
             source  = #{book.source}
         where id = #{book.id}
     </update>
+
+
+    <update id="updatePoster">
+        update book
+        set posterUpdated = true
+        where id = #{bookId}
+    </update>
+
     <delete id="deleteOne">
         delete
         from book
@@ -27,6 +35,7 @@
         select *
         from book
     </select>
+
     <select id="selectById" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Book">
         select *
         from book

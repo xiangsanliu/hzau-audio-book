@@ -27,4 +27,6 @@ public class Book {
 
     private List<BookAudio> audios;
 
+    private Boolean posterUploaded;
+
 }

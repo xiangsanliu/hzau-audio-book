@@ -19,11 +19,13 @@ public interface ActivityMapper {
 
     int update(@Param("activity") Activity activity);
 
+    int updatePoster(@Param("actId") long actId);
+
     int delete(@Param("id") long id);
 
     List<Activity> selectAllActivities();
 
-    Activity selectOne(@Param("id")long id);
+    Activity selectOne(@Param("id") long id);
 
 
 }

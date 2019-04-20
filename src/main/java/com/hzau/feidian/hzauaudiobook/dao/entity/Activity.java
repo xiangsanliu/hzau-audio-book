@@ -21,4 +21,6 @@ public class Activity {
 
     private String desc;
 
+    private Boolean posterUploaded;
+
 }

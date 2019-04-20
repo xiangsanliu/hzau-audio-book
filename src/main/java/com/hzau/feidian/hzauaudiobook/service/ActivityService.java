@@ -46,4 +46,8 @@ public class ActivityService {
         activityMapper.delete(id);
     }
 
+    public void uploadPoster(long actId) {
+        activityMapper.updatePoster(actId);
+    }
+
 }
