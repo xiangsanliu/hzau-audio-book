@@ -22,7 +22,6 @@ public class LoginService {
     private UserMapper userMapper;
 
     public ResponseBean login(String data, HttpSession session) {
-        System.out.println(session.getId());
         JSONObject jsonObject = JSONObject.parseObject(data);
         String username = jsonObject.getString("username");
         String password = jsonObject.getString("password");

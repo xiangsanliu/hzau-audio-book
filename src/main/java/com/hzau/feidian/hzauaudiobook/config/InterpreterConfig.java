@@ -16,7 +16,6 @@ public class InterpreterConfig implements WebMvcConfigurer {
 
     private final LoginInterceptor loginInterceptor;
 
-
     public InterpreterConfig(LoginInterceptor loginInterceptor) {
         this.loginInterceptor = loginInterceptor;
     }
@@ -25,6 +24,13 @@ public class InterpreterConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/wechat/**", "/login", "/validate");
+                .excludePathPatterns(
+                        "/wechat/**",
+                        "/login",
+                        "/validate",
+                        "/activity/upload/**",
+                        "/bookAudio/upload/**",
+                        "/book/upload/**"
+                );
     }
 }

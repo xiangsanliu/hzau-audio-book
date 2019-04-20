@@ -39,7 +39,6 @@ public class ShortAudioService {
     }
 
     public void disApprove(String data) {
-        System.out.println(data);
         ShortAudio shortAudio = JSON.parseObject(data, ShortAudio.class);
         check(shortAudio.getId(), shortAudio.getApproved(), shortAudio.getReason());
     }
