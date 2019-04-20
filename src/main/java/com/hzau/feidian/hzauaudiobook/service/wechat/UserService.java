@@ -1,5 +1,6 @@
 package com.hzau.feidian.hzauaudiobook.service.wechat;
 
+import com.alibaba.fastjson.JSON;
 import com.hzau.feidian.hzauaudiobook.dao.entity.User;
 import com.hzau.feidian.hzauaudiobook.dao.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,10 @@ public class UserService {
         return userMapper.selectByOpenId(openid);
     }
 
+    public void editUser(String openid, String data) {
+        User user = JSON.parseObject(data, User.class);
+        user.setOpenid(openid);
+        userMapper.update(user);
+    }
 
 }

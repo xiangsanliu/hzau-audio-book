@@ -15,8 +15,7 @@
             majorAndClass = #{user.majorAndClass},
             qq            = #{user.qq},
             phoneNum      = #{user.phoneNum}
-        where openid = #{user.openid}
-
+        where openid = #{user.openid};
     </update>
 
     <select id="selectByOpenId" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.User">

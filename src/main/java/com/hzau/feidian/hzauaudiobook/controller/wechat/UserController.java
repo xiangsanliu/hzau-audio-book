@@ -3,6 +3,7 @@ package com.hzau.feidian.hzauaudiobook.controller.wechat;
 import com.hzau.feidian.hzauaudiobook.service.wechat.UserService;
 import com.hzau.feidian.hzauaudiobook.share.ResponseBean;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +26,12 @@ public class UserController {
     @RequestMapping("getUserInfo")
     public ResponseBean getUserInfo(@PathVariable String openid) {
         return ResponseBean.ok("success", userService.getUserInfo(openid));
+    }
+
+    @RequestMapping("editUser")
+    public ResponseBean editUser(@PathVariable String openid, @RequestBody String data) {
+        userService.editUser(openid, data);
+        return ResponseBean.ok();
     }
 
 }
