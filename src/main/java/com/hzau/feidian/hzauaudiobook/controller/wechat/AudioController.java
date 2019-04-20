@@ -32,6 +32,11 @@ public class AudioController {
         return ResponseBean.ok("success", audioService.getBookById(openid, id));
     }
 
+    @RequestMapping("getActById/{id}")
+    public ResponseBean getActById(@PathVariable String openid, @PathVariable long id) {
+        return ResponseBean.ok(null, audioService.getActById(openid, id));
+    }
+
     @RequestMapping("getAllShortAudios")
     public ResponseBean getAllShortAudios(@PathVariable String openid) {
         return ResponseBean.ok("success", audioService.getAllApprovedShortAudios(openid));

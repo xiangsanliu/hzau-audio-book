@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * @author 项三六
  * @time 2019/3/17 11:44
@@ -22,5 +24,7 @@ public class Activity {
     private String desc;
 
     private Boolean posterUploaded;
+
+    private List<ShortAudio> shortAudios;
 
 }
