@@ -23,6 +23,8 @@ public interface ShortAudioMapper {
 
     List<ShortAudio> selectAllApproved(@Param("openid") String openid);
 
+    List<ShortAudio> selectMy(@Param("openid") String openid);
+
     int incAmount(@Param("id") long id);
 
 }

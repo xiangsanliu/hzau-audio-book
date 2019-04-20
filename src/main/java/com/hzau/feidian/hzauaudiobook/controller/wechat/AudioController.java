@@ -37,6 +37,11 @@ public class AudioController {
         return ResponseBean.ok("success", audioService.getAllApprovedShortAudios(openid));
     }
 
+    @RequestMapping("getMyShortAudios")
+    public ResponseBean getMyShortAudios(@PathVariable String openid) {
+        return ResponseBean.ok("success", audioService.getMyShortAudios(openid));
+    }
+
     @RequestMapping("upload")
     public ResponseBean uploadFile(ShortAudio shortAudio) {
         String parentDir = "activities" + File.separator + shortAudio.getActName();

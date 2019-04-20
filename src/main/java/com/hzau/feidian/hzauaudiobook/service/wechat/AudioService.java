@@ -2,11 +2,9 @@ package com.hzau.feidian.hzauaudiobook.service.wechat;
 
 import com.hzau.feidian.hzauaudiobook.dao.entity.Book;
 import com.hzau.feidian.hzauaudiobook.dao.entity.ShortAudio;
-import com.hzau.feidian.hzauaudiobook.dao.entity.User;
 import com.hzau.feidian.hzauaudiobook.dao.mapper.BookAudioMapper;
 import com.hzau.feidian.hzauaudiobook.dao.mapper.BookMapper;
 import com.hzau.feidian.hzauaudiobook.dao.mapper.ShortAudioMapper;
-import com.hzau.feidian.hzauaudiobook.dao.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,8 +22,6 @@ public class AudioService {
     @Resource
     private ShortAudioMapper shortAudioMapper;
 
-    @Resource
-    private UserMapper userMapper;
 
     public Book getBookById(String openid, long id) {
         Book book = bookMapper.selectById(id);
@@ -39,6 +35,20 @@ public class AudioService {
 
     public List<ShortAudio> getAllApprovedShortAudios(String openid) {
         return shortAudioMapper.selectAllApproved(openid);
+    }
+
+    public List<ShortAudio> getMyShortAudios(String openid) {
+        List<ShortAudio> shortAudios = shortAudioMapper.selectMy(openid);
+        shortAudios.forEach(e -> {
+            if (!e.getChecked()) {
+                e.setStatus("未审核");
+            } else if (e.getApproved()) {
+                e.setStatus("审核通过");
+            } else {
+                e.setStatus("审核未通过");
+            }
+        });
+        return shortAudioMapper.selectMy(openid);
     }
 
 
