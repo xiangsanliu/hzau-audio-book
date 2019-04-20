@@ -83,6 +83,8 @@
                sa.filename,
                sa.uploadTime,
                sa.amount,
+               sa.checked,
+               sa.approved,
                u.name,
                u.majorAndClass,
                u.qq,
