@@ -5,11 +5,11 @@
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.FavouriteMapper">
 
     <insert id="insertFBA">
-        insert into favourite_book_audio(openid, bookAudioId) value (#{openid}, #{bookAudioId});
+        insert ignore into favourite_book_audio(openid, bookAudioId) value (#{openid}, #{bookAudioId});
     </insert>
 
     <insert id="insertFSA">
-        insert into favourite_short_audio(openid, shortAudioId) value (#{openid}, #{shortAudioId});
+        insert ignore into favourite_short_audio(openid, shortAudioId) value (#{openid}, #{shortAudioId});
     </insert>
 
     <delete id="deleteFBA">

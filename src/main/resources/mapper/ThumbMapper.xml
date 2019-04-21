@@ -5,19 +5,19 @@
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.ThumbMapper">
 
     <insert id="insertTBA">
-        insert into thumb_book_audio(openid, bookAudioId) value (#{openid}, #{bookAudioId});
+        insert ignore into thumb_book_audio(openid, bookAudioId) value (#{openid}, #{bookAudioId});
     </insert>
 
     <insert id="insertTSA">
-        insert into thumb_short_audio(openid, shortAudioId) value (#{openid}, #{shortAudioId});
+        insert ignore into thumb_short_audio(openid, shortAudioId) value (#{openid}, #{shortAudioId});
     </insert>
 
     <insert id="insertTCBA">
-        insert into thumb_comment_book_audio(openid, commentBookAudioId) value (#{openid}, #{commentBookAudioId})
+        insert ignore into thumb_comment_book_audio(openid, commentBookAudioId) value (#{openid}, #{commentBookAudioId})
     </insert>
 
     <insert id="insertTCSA">
-        insert into thumb_comment_short_audio(openid, commentShortAudioId) value (#{openid}, #{commentShortAudioId})
+        insert ignore into thumb_comment_short_audio(openid, commentShortAudioId) value (#{openid}, #{commentShortAudioId})
     </insert>
 
     <delete id="deleteTBA">

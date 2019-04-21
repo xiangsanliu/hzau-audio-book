@@ -195,6 +195,6 @@ create table thumb_short_audio
       on update cascade on delete cascade
 );
 
-insert into activity(id, name) VALUE (0, '非活动');
+insert ignore into activity(id, name) VALUE (0, '非活动');
 
-insert into user(openid, name) value ('admin','');
+insert ignore into user(openid, name) value ('admin','');

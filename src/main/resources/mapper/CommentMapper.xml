@@ -5,12 +5,12 @@
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.CommentMapper">
 
     <insert id="insertIntoBookAudio">
-        insert into comment_book_audio(bookAudioId, content, openid)
+        insert ignore into comment_book_audio(bookAudioId, content, openid)
             value (#{comment.bookAudioId}, #{comment.content}, #{comment.openid});
     </insert>
 
     <insert id="insertIntoShortAudio">
-        insert into comment_short_audio(shortAudioId, content, openid)
+        insert ignore into comment_short_audio(shortAudioId, content, openid)
             value (#{comment.shortAudioId}, #{comment.content}, #{comment.openid});
     </insert>
 

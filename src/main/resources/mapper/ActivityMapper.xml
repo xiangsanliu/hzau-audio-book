@@ -6,7 +6,7 @@
 
 
     <insert id="insert">
-        insert into activity(name, `desc`)
+        insert ignore into activity(name, `desc`)
             VALUE (#{activity.name}, #{activity.desc});
     </insert>
 

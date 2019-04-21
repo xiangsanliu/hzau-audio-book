@@ -6,10 +6,10 @@
 
 
     <insert id="insert">
-        insert into book_list(name) value (#{bookList.name})
+        insert ignore into book_list(name) value (#{bookList.name})
     </insert>
     <insert id="insertBook">
-        insert into book_list_book(bookListId, bookId) VALUE (#{bookListId}, #{bookId})
+        insert ignore into book_list_book(bookListId, bookId) VALUE (#{bookListId}, #{bookId})
     </insert>
     <update id="update">
         update book_list

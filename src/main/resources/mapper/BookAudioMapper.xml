@@ -6,7 +6,7 @@
 
 
     <insert id="insert">
-        insert into book_audio(name, bookId)
+        insert ignore into book_audio(name, bookId)
             VALUE (#{bookAudio.name}, #{bookAudio.bookId});
     </insert>
 

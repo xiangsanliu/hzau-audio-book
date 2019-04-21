@@ -5,7 +5,7 @@
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.ShortAudioMapper">
 
     <insert id="insert">
-        insert into short_audio(content, title, actId, actName, openid, fileName)
+        insert ignore into short_audio(content, title, actId, actName, openid, fileName)
             value (#{audio.content}, #{audio.title}, #{audio.actId}, #{audio.actName}, #{audio.openid},
                    #{audio.fileName});
     </insert>
