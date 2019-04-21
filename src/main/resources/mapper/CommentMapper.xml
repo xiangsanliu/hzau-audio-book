@@ -11,7 +11,7 @@
 
     <insert id="insertIntoShortAudio">
         insert into comment_short_audio(shortAudioId, content, openid)
-            value (#{comment.bookAudioId}, #{comment.content}, #{comment.openid});
+            value (#{comment.shortAudioId}, #{comment.content}, #{comment.openid});
     </insert>
 
     <update id="updateShortApprove">

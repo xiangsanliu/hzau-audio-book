@@ -14,7 +14,11 @@ import java.sql.Timestamp;
 @Setter
 public class Comment {
 
-    private long id;
+    private Long id;
+
+    private Long bookAudioId;
+
+    private Long shortAudioId;
 
     private String openid;
 
