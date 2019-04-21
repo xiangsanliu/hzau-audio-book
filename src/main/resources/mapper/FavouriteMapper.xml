@@ -30,6 +30,7 @@
                fba.bookAudioId,
                ba.name              as name,
                b.name               as bookName,
+               b.picPath            as picPath,
                ba.bookId            as bookId,
                ifnull((select 1
                        from thumb_book_audio t

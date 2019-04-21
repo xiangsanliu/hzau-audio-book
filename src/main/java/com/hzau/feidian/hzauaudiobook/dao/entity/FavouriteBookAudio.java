@@ -23,6 +23,8 @@ public class FavouriteBookAudio {
 
     private Long bookId;
 
+    private String picPath;
+
     private Boolean favourite;
 
     private int thumb;
