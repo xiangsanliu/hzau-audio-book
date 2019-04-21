@@ -23,4 +23,10 @@ public class FavouriteBookAudio {
 
     private Long bookId;
 
+    private Boolean favourite;
+
+    private int thumb;
+
+    private Boolean thumbed;
+
 }

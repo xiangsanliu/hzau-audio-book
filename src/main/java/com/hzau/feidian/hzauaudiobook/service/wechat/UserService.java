@@ -3,6 +3,7 @@ package com.hzau.feidian.hzauaudiobook.service.wechat;
 import com.alibaba.fastjson.JSON;
 import com.hzau.feidian.hzauaudiobook.dao.entity.User;
 import com.hzau.feidian.hzauaudiobook.dao.mapper.UserMapper;
+import com.hzau.feidian.hzauaudiobook.share.ResponseBean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

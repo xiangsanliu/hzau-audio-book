@@ -27,19 +27,28 @@
 
     <select id="selectFBA" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.FavouriteBookAudio">
         select fba.openid,
-               bookAudioId,
-               ba.name   name,
-               b.name    bookName,
-               ba.bookId bookId
+               fba.bookAudioId,
+               ba.name              as name,
+               b.name               as bookName,
+               ba.bookId            as bookId,
+               ifnull((select 1
+                       from thumb_book_audio t
+                       where t.openid = #{openid}
+                         and t.bookAudioId = fba.bookAudioId
+                       limit 1), 0) as thumbed,
+               count(tba.openid)    as thumb,
+               1                    as favourite
         from favourite_book_audio fba
                  join book_audio ba on fba.bookAudioId = ba.id
                  join book b on ba.bookId = b.id
-        where openid = #{openid};
+                 left join thumb_book_audio tba on fba.bookAudioId = tba.bookAudioId
+        where fba.openid = #{openid}
+        group by tba.bookAudioId;
     </select>
 
     <select id="selectFSA" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.FavouriteShortAudio">
         select fsa.openid,
-               shortAudioId,
+               fsa.shortAudioId,
                actId,
                actName,
                content,
@@ -47,11 +56,20 @@
                sa.title,
                u.name,
                u.majorAndClass,
-               u.avatarUrl
+               u.avatarUrl,
+               ifnull((select 1
+                       from thumb_short_audio t
+                       where t.openid = #{openid}
+                         and t.shortAudioId = fsa.shortAudioId
+                       limit 1), 0) as thumbed,
+               count(tsa.openid)    as thumb,
+               1                    as favourite
         from favourite_short_audio fsa
                  join short_audio sa on fsa.shortAudioId = sa.id
                  join user u on fsa.openid = u.openid
+                 left join thumb_short_audio tsa on sa.id = tsa.shortAudioId
         where fsa.openid = #{openid}
-          and approved = true;
+          and approved = true
+        group by fsa.shortAudioId
     </select>
 </mapper>

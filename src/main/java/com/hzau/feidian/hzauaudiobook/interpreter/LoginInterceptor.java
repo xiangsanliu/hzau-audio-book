@@ -31,9 +31,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             // 未登录
             sendError(response, ResponseBean.auth());
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     private void sendError(HttpServletResponse response, ResponseBean responseBean) throws IOException {

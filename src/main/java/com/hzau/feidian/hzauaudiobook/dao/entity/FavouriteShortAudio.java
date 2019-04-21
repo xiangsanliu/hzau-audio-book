@@ -30,4 +30,10 @@ public class FavouriteShortAudio {
 
     private String avatarUrl;
 
+    private Boolean favourite;
+
+    private int thumb;
+
+    private Boolean thumbed;
+
 }
