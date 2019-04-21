@@ -10,7 +10,9 @@ import com.hzau.feidian.hzauaudiobook.dao.mapper.ShortAudioMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AudioService {
@@ -26,7 +28,6 @@ public class AudioService {
 
     @Resource
     private ActivityMapper activityMapper;
-
 
     public Book getBookById(String openid, long id) {
         Book book = bookMapper.selectById(id);
@@ -60,6 +61,15 @@ public class AudioService {
             }
         });
         return shortAudios;
+    }
+
+    public Map<String, List> search(String openid, String keyword) {
+        Map<String, List> result = new HashMap<>();
+        keyword = '%' + keyword + '%';
+        result.put("book", bookMapper.search(keyword));
+        result.put("bookAudio", bookAudioMapper.search(openid, keyword));
+        result.put("shortAudio", shortAudioMapper.search(openid, keyword));
+        return result;
     }
 
 

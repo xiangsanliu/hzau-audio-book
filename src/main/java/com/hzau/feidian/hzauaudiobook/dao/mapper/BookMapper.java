@@ -13,6 +13,8 @@ public interface BookMapper {
 
     Book selectById(@Param("id") long id);
 
+    List<Book> search(@Param("keyword") String keyword);
+
     int insertBook(@Param("book") Book book);
 
     int updateBook(@Param("book") Book book);

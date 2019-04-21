@@ -34,6 +34,10 @@ public class ResponseBean {
         return new ResponseBean(200, msg, null);
     }
 
+    public static ResponseBean error(int status, String msg, Object content) {
+        return new ResponseBean(status, msg, content);
+    }
+
     public static ResponseBean error(String msg, Object content) {
         return new ResponseBean(500, msg, content);
     }
@@ -43,7 +47,7 @@ public class ResponseBean {
     }
 
     public static ResponseBean auth() {
-        return new ResponseBean(401, null, null);
+        return new ResponseBean(401, "无权限", null);
     }
 
     public static ResponseBean forbid() {

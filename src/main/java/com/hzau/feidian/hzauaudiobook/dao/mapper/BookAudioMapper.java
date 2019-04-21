@@ -13,6 +13,8 @@ public interface BookAudioMapper {
 
     List<BookAudio> selectBookAudiosByBook(@Param("openid") String openid, @Param("bookId") long bookId);
 
+    List<BookAudio> search(@Param("openid") String openid, @Param("keyword") String keyword);
+
     BookAudio selectOne(@Param("id") long id);
 
     int deleteOne(@Param("id") long id);

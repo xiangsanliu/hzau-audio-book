@@ -47,6 +47,11 @@ public class AudioController {
         return ResponseBean.ok("success", audioService.getMyShortAudios(openid));
     }
 
+    @RequestMapping("search/{keyword}")
+    public ResponseBean search(@PathVariable String openid, @PathVariable String keyword) {
+        return ResponseBean.ok(null, audioService.search(openid, keyword));
+    }
+
     @RequestMapping("upload")
     public ResponseBean uploadFile(ShortAudio shortAudio) {
         String parentDir = "activities" + File.separator + shortAudio.getActName();

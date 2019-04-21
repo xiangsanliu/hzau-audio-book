@@ -1,7 +1,6 @@
 package com.hzau.feidian.hzauaudiobook.interpreter;
 
 import com.alibaba.fastjson.JSON;
-import com.hzau.feidian.hzauaudiobook.dao.entity.User;
 import com.hzau.feidian.hzauaudiobook.share.ResponseBean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -22,8 +21,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if (404 == response.getStatus()) {
+            sendError(response, ResponseBean.error(404, "UrlError: Target url not defined!", null));
+            return false;
+        }
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        Object user = session.getAttribute("user");
         if (user == null) {
             // 未登录
             sendError(response, ResponseBean.auth());

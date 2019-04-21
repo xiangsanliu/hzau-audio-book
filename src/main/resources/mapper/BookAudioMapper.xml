@@ -74,5 +74,27 @@
         group by ba.id
         limit 1;
     </select>
+    <select id="search" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.BookAudio">
+        select ba.id                as id,
+               ba.name              as name,
+               book.name            as bookName,
+               count(tba.openid)    as thumb,
+               ba.amount,
+               ifnull((select 1
+                       from thumb_book_audio t
+                       where t.openid = #{openid}
+                         and t.bookAudioId = ba.id
+                       limit 1), 0) as thumbed,
+               ifnull((select 1
+                       from favourite_book_audio t
+                       where t.openid = #{openid}
+                         and t.bookAudioId = ba.id
+                       limit 1), 0) as favourite
+        from book_audio ba
+                 left join book on book.id = ba.bookId
+                 left join thumb_book_audio tba on ba.id = tba.bookAudioId
+        where ba.name like #{keyword}
+        group by ba.id;
+    </select>
 
 </mapper>

@@ -130,4 +130,36 @@
           and sa.actId = #{id}
         group by sa.id;
     </select>
+    <select id="search" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.ShortAudio">
+        select sa.id,
+               sa.actid,
+               sa.actname,
+               sa.content,
+               sa.openid,
+               sa.filename,
+               sa.uploadTime,
+               count(tsa.openid)    as thumb,
+               sa.amount,
+               sa.title,
+               u.name,
+               u.majorAndClass,
+               u.qq,
+               u.phoneNum,
+               ifnull((select 1
+                       from thumb_short_audio t
+                       where t.openid = #{openid}
+                         and t.shortAudioId = sa.id
+                       limit 1), 0) as thumbed,
+               ifnull((select 1
+                       from favourite_short_audio t
+                       where t.openid = #{openid}
+                         and t.shortAudioId = sa.id
+                       limit 1), 0) as favourite
+        from short_audio sa
+                 left join user u on sa.openid = u.openid
+                 left join thumb_short_audio tsa on sa.id = tsa.shortAudioId
+        where sa.approved = true
+          and sa.title like #{keyword}
+        group by sa.id;
+    </select>
 </mapper>

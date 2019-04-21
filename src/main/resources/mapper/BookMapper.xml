@@ -42,4 +42,10 @@
         limit 1
     </select>
 
+    <select id="search" resultType="com.hzau.feidian.hzauaudiobook.dao.entity.Book">
+        select *
+        from book
+        where name like #{keyword}
+    </select>
+
 </mapper>

@@ -26,6 +26,7 @@ public class InterpreterConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns(
                         "/wechat/**",
+//                        "/error",
                         "/login",
                         "/validate",
                         "/activity/upload/**",
