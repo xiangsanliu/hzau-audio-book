@@ -44,6 +44,7 @@
                actName,
                content,
                fileName,
+               sa.title,
                u.name,
                u.majorAndClass,
                u.avatarUrl

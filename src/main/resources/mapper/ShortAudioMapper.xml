@@ -5,8 +5,9 @@
 <mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.ShortAudioMapper">
 
     <insert id="insert">
-        insert into short_audio(content, actId, actName, openid, fileName)
-            value (#{audio.content}, #{audio.actId}, #{audio.actName}, #{audio.openid}, #{audio.fileName});
+        insert into short_audio(content, title, actId, actName, openid, fileName)
+            value (#{audio.content}, #{audio.title}, #{audio.actId}, #{audio.actName}, #{audio.openid},
+                   #{audio.fileName});
     </insert>
 
     <update id="updateApprove">
@@ -35,6 +36,7 @@
                sa.uploadTime,
                sa.amount,
                sa.reason,
+               sa.title,
                u.name,
                u.majorAndClass,
                u.qq,
@@ -51,6 +53,7 @@
                sa.openid,
                sa.filename,
                sa.uploadTime,
+               sa.title,
                count(tsa.openid)    as thumb,
                sa.amount,
                u.name,
@@ -85,6 +88,7 @@
                sa.amount,
                sa.checked,
                sa.approved,
+               sa.title,
                u.name,
                u.majorAndClass,
                u.qq,
@@ -104,6 +108,7 @@
                sa.uploadTime,
                count(tsa.openid)    as thumb,
                sa.amount,
+               sa.title,
                u.name,
                u.majorAndClass,
                u.qq,

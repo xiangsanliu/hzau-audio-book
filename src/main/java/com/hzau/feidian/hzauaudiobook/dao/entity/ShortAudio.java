@@ -20,6 +20,8 @@ public class ShortAudio {
 
     private String content;
 
+    private String title;
+
     private Long actId;
 
     private String openid;

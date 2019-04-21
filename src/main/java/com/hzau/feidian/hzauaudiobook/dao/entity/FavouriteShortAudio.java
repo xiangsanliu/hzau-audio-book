@@ -14,6 +14,8 @@ public class FavouriteShortAudio {
 
     private String openid;
 
+    private String title;
+
     private Long shortAudioId;
 
     private String actName;
