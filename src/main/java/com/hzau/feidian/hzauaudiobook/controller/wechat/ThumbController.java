@@ -36,7 +36,7 @@ public class ThumbController {
 
     @RequestMapping("thumbShortAudio/{id}")
     public ResponseBean thumbShortAudio(@PathVariable String openid, @PathVariable long id) {
-        thumbService.thumbAudio(openid, id, true);
+        thumbService.thumbAudio(openid, id, false);
         return ResponseBean.ok();
     }
 
@@ -60,7 +60,7 @@ public class ThumbController {
 
     @RequestMapping("removeShortAudio/{id}")
     public ResponseBean removeShortAudio(@PathVariable String openid, @PathVariable long id) {
-        thumbService.removeAudio(openid, id, true);
+        thumbService.removeAudio(openid, id, false);
         return ResponseBean.ok();
     }
 
