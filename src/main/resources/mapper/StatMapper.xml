@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzau.feidian.hzauaudiobook.dao.mapper.StatMapper">
+
+
+    <select id="countBookAmount" resultType="java.lang.Integer">
+        select sum(amount)
+        from book_audio;
+    </select>
+
+    <select id="countShortAmount" resultType="java.lang.Integer">
+        select sum(amount)
+        from short_audio;
+    </select>
+
+    <select id="countBookThumb" resultType="java.lang.Integer">
+        select count(1) from thumb_book_audio;
+    </select>
+
+    <select id="countShortThumb" resultType="java.lang.Integer">
+        select count(1) from thumb_book_audio;
+    </select>
+
+    <select id="countBookComment" resultType="java.lang.Integer">
+        select count(1) from comment_book_audio;
+    </select>
+
+    <select id="countShortComment" resultType="java.lang.Integer">
+        select count(1) from comment_short_audio;
+    </select>
+
+
+</mapper>
