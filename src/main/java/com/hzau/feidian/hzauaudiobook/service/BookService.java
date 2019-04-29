@@ -50,7 +50,11 @@ public class BookService {
     }
 
     public void uploadPoster(long actId) {
-        bookMapper.updatePoster(actId);
+        bookMapper.updatePoster(actId, true);
+    }
+
+    public void deletePoster(long actId) {
+        bookMapper.updatePoster(actId, false);
     }
 
 }

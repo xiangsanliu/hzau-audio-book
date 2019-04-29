@@ -21,14 +21,10 @@ public class StatService {
 
     public Map<String, Integer> countAll() {
         Map<String, Integer> result = new HashMap<>();
-        result.put("bookAmount", statMapper.countBookAmount());
-        result.put("shortAmount", statMapper.countShortAmount());
-        result.put("bookThumb", statMapper.countBookThumb());
-        result.put("shortThumb", statMapper.countShortThumb());
-        result.put("bookComment", statMapper.countBookComment());
-        result.put("shortComment", statMapper.countShortComment());
+        result.put("amount", statMapper.countBookAmount() + statMapper.countShortAmount());
+        result.put("thumb", statMapper.countBookThumb() + statMapper.countShortThumb());
+        result.put("comment", statMapper.countBookComment() + statMapper.countShortComment());
         return result;
     }
-
 
 }

@@ -19,7 +19,7 @@ public interface BookMapper {
 
     int updateBook(@Param("book") Book book);
 
-    int updatePoster(@Param("bookId") long bookId);
+    int updatePoster(@Param("bookId") long bookId, @Param("posterUpdated") boolean posterUpdated);
 
     int deleteOne(@Param("id") long id);
 
