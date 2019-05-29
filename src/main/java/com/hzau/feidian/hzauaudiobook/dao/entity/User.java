@@ -21,6 +21,7 @@ public class User {
 
     private Integer gender;
 
+    @Deprecated
     private Boolean graduated;
 
 }

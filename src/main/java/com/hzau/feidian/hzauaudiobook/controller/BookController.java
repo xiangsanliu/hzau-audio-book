@@ -45,6 +45,12 @@ public class BookController {
         return ResponseBean.ok("删除成功");
     }
 
+    @RequestMapping("removePoster/{id}")
+    public ResponseBean removePoster(@PathVariable long id) {
+        bookService.removePoster(id);
+        return ResponseBean.ok("删除成功");
+    }
+
     @RequestMapping("upload/{id}/{name}")
     public ResponseBean uploadPic(MultipartFile file, @PathVariable("id") Long bookId,
                                   @PathVariable("name") String bookName) {

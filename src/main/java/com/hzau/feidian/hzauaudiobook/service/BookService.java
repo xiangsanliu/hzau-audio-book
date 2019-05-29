@@ -49,12 +49,12 @@ public class BookService {
         bookMapper.deleteOne(id);
     }
 
-    public void uploadPoster(long actId) {
-        bookMapper.updatePoster(actId, true);
+    public void uploadPoster(long bookId) {
+        bookMapper.updatePoster(bookId, true);
     }
 
-    public void deletePoster(long actId) {
-        bookMapper.updatePoster(actId, false);
+    public void removePoster(long bookId) {
+        bookMapper.updatePoster(bookId, false);
     }
 
 }
